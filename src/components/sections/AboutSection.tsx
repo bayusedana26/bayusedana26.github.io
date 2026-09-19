@@ -80,6 +80,18 @@ export const AboutSection: React.FC = () => {
               </div>
             ))}
           </div>
+
+          {/* Many more institutions footnote indicator */}
+          <div className="flex items-center justify-center pt-1">
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-editorial-light-border/80 dark:border-editorial-dark-border/80 bg-editorial-light-surface/50 dark:bg-editorial-dark-surface/50 text-xs font-mono text-editorial-light-muted dark:text-editorial-dark-muted">
+              <span className="w-1.5 h-1.5 rounded-full bg-editorial-light-accent dark:bg-editorial-dark-accent" />
+              <span>
+                {language === "id"
+                  ? "+ dan berbagai institusi perbankan, universitas & organisasi lainnya"
+                  : "+ and many more partner institutions, universities & organizations"}
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* Education Section (Understated / Compact Background Credentials) */}

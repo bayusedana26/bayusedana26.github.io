@@ -15,12 +15,19 @@ import {
   BarChart3,
   Flame,
   BookOpen,
+  ChevronDown,
 } from "lucide-react";
 
 export const ProjectGrid: React.FC = () => {
   const { language, t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>("all");
   const [lightboxProject, setLightboxProject] = useState<Project | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const handleCategoryChange = (cat: ProjectCategory) => {
+    setActiveCategory(cat);
+    setShowAll(false);
+  };
 
   const categories: { key: ProjectCategory; label: string; icon?: React.ElementType; count: number }[] = [
     { key: "all", label: t.projects.filterAll, count: projects.length },
@@ -61,6 +68,8 @@ export const ProjectGrid: React.FC = () => {
     return item.category === activeCategory;
   });
 
+  const visibleProjects = showAll ? filteredProjects : filteredProjects.slice(0, 4);
+
   return (
     <section id="projects" className="w-full section-spacing border-b border-editorial-light-border dark:border-editorial-dark-border">
       <div className="editorial-container space-y-8">
@@ -94,7 +103,7 @@ export const ProjectGrid: React.FC = () => {
               <button
                 key={cat.key}
                 type="button"
-                onClick={() => setActiveCategory(cat.key)}
+                onClick={() => handleCategoryChange(cat.key)}
                 className={`inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-mono transition-colors border ${
                   isActive
                     ? "bg-editorial-light-text dark:bg-editorial-dark-text text-editorial-light-bg dark:text-editorial-dark-bg border-transparent font-semibold shadow-sm"
@@ -111,7 +120,7 @@ export const ProjectGrid: React.FC = () => {
 
         {/* Projects Gallery Grid (2-Column Editorial Grid) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {filteredProjects.map((project) => (
+          {visibleProjects.map((project) => (
             <article
               key={project.id}
               className="group flex flex-col justify-between rounded-lg border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface overflow-hidden hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent transition-all duration-200"
@@ -195,6 +204,43 @@ export const ProjectGrid: React.FC = () => {
             </article>
           ))}
         </div>
+
+        {/* Show More / Show Less Pagination Toggle */}
+        {filteredProjects.length > 4 && (
+          <div className="flex flex-col items-center justify-center pt-2 space-y-2">
+            <button
+              type="button"
+              onClick={() => setShowAll(!showAll)}
+              className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-lg border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface text-xs font-mono font-semibold text-editorial-light-text dark:text-editorial-dark-text hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent hover:text-editorial-light-accent dark:hover:text-editorial-dark-accent transition-all shadow-xs"
+            >
+              <span>
+                {showAll
+                  ? language === "id"
+                    ? "Tampilkan Lebih Sedikit (4 Teratas)"
+                    : "Show Less (Top 4)"
+                  : language === "id"
+                    ? `Lihat Semua Proyek (+${filteredProjects.length - 4} Proyek Lainnya)`
+                    : `Show More Projects (+${filteredProjects.length - 4} More)`}
+              </span>
+              <ChevronDown
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                  showAll ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+            <span className="text-[11px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted">
+              {showAll
+                ? `${filteredProjects.length} / ${filteredProjects.length} ${
+                    language === "id" ? "proyek ditampilkan" : "projects shown"
+                  }`
+                : `4 / ${filteredProjects.length} ${
+                    language === "id"
+                      ? "proyek teratas ditampilkan"
+                      : "top projects shown"
+                  }`}
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Project Image Lightbox Modal */}

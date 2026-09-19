@@ -16,13 +16,14 @@ export const LanguageToggle: React.FC<{ className?: string }> = ({ className = "
         type="button"
         onClick={() => setLanguage("id")}
         aria-pressed={language === "id"}
-        className={`px-2 py-1 rounded transition-colors ${
+        className={`inline-flex items-center space-x-1 px-2 py-1 rounded transition-colors ${
           language === "id"
             ? "bg-editorial-light-accent text-white dark:bg-editorial-dark-accent dark:text-white font-semibold"
             : "text-editorial-light-muted hover:text-editorial-light-text dark:text-editorial-dark-muted dark:hover:text-editorial-dark-text"
         }`}
       >
-        ID
+        <span className="text-xs leading-none" aria-hidden="true">🇮🇩</span>
+        <span>ID</span>
       </button>
       <span className="text-editorial-light-border dark:text-editorial-dark-border px-0.5" aria-hidden="true">
         /
@@ -31,13 +32,14 @@ export const LanguageToggle: React.FC<{ className?: string }> = ({ className = "
         type="button"
         onClick={() => setLanguage("en")}
         aria-pressed={language === "en"}
-        className={`px-2 py-1 rounded transition-colors ${
+        className={`inline-flex items-center space-x-1 px-2 py-1 rounded transition-colors ${
           language === "en"
             ? "bg-editorial-light-accent text-white dark:bg-editorial-dark-accent dark:text-white font-semibold"
             : "text-editorial-light-muted hover:text-editorial-light-text dark:text-editorial-dark-muted dark:hover:text-editorial-dark-text"
         }`}
       >
-        EN
+        <span className="text-xs leading-none" aria-hidden="true">🇬🇧</span>
+        <span>EN</span>
       </button>
     </div>
   );

@@ -147,41 +147,61 @@ export const CapabilityIndex: React.FC = () => {
           </div>
         </div>
 
-        {/* Editorial 4-Pillar Grid with Thin Dividers */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-editorial-light-border dark:divide-editorial-dark-border border-y border-editorial-light-border dark:border-editorial-dark-border">
-          {capabilities.map((cap) => {
+        {/* Visually Elevated 4-Pillar Capability Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {capabilities.map((cap, idx) => {
             const Icon = cap.icon;
+            const accentGradients = [
+              "from-blue-600 to-cyan-500",
+              "from-teal-600 to-emerald-500",
+              "from-emerald-600 to-teal-500",
+              "from-amber-600 to-orange-500",
+            ];
+            const numTag = `0${idx + 1}`;
+
             return (
               <div
                 key={cap.key}
-                className="py-8 md:py-10 md:px-6 first:pl-0 last:pr-0 space-y-4 group transition-colors"
+                className="relative flex flex-col justify-between rounded-xl border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface p-6 hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent hover:shadow-md transition-all duration-200 group overflow-hidden"
               >
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs text-editorial-light-muted dark:text-editorial-dark-muted">
-                    {cap.data.tag}
-                  </span>
-                  <Icon className="w-4 h-4 text-editorial-light-muted dark:text-editorial-dark-muted group-hover:text-editorial-light-accent dark:group-hover:text-editorial-dark-accent transition-colors" />
-                </div>
+                {/* Top Accent Gradient Bar */}
+                <div
+                  className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${accentGradients[idx]} opacity-70 group-hover:opacity-100 transition-opacity`}
+                />
 
-                <div className="space-y-1">
-                  <h3 className="text-lg font-bold tracking-tight text-editorial-light-text dark:text-editorial-dark-text">
-                    {cap.data.title}
-                  </h3>
-                  <div className="text-xs font-mono text-editorial-light-accent dark:text-editorial-dark-accent font-medium">
-                    {cap.data.subtitle}
+                <div className="space-y-4">
+                  {/* Top Row: Numeric Index & Elevated Icon */}
+                  <div className="flex items-center justify-between pt-1">
+                    <span className="font-mono text-sm font-bold tracking-widest text-editorial-light-muted dark:text-editorial-dark-muted">
+                      {numTag} / {cap.key.toUpperCase()}
+                    </span>
+                    <div className="p-2.5 rounded-lg bg-editorial-light-bg dark:bg-editorial-dark-bg border border-editorial-light-border/80 dark:border-editorial-dark-border/80 text-editorial-light-text dark:text-editorial-dark-text group-hover:border-editorial-light-accent dark:group-hover:border-editorial-dark-accent group-hover:scale-105 transition-all shadow-xs">
+                      <Icon className="w-5 h-5 text-editorial-light-accent dark:text-editorial-dark-accent" />
+                    </div>
                   </div>
-                </div>
 
-                <p className="text-sm text-editorial-light-muted dark:text-editorial-dark-muted leading-relaxed">
-                  {cap.data.desc}
-                </p>
+                  {/* Title & Domain Subtitle */}
+                  <div className="space-y-1.5">
+                    <h3 className="text-xl font-bold tracking-tight text-editorial-light-text dark:text-editorial-dark-text group-hover:text-editorial-light-accent dark:group-hover:text-editorial-dark-accent transition-colors">
+                      {cap.data.title}
+                    </h3>
+                    <div className="text-xs font-mono font-semibold text-editorial-light-accent dark:text-editorial-dark-accent">
+                      {cap.data.subtitle}
+                    </div>
+                  </div>
+
+                  {/* Descriptive Narrative */}
+                  <p className="text-xs sm:text-sm text-editorial-light-muted dark:text-editorial-dark-muted leading-relaxed">
+                    {cap.data.desc}
+                  </p>
+                </div>
 
                 {/* Skill tags with inline micro-icons */}
-                <div className="pt-2 flex flex-wrap gap-1.5">
+                <div className="pt-5 mt-5 border-t border-editorial-light-border/60 dark:border-editorial-dark-border/60 flex flex-wrap gap-1.5">
                   {cap.data.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="inline-flex items-center space-x-1.5 rounded border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface px-2 py-0.5 text-[11px] font-mono text-editorial-light-text dark:text-editorial-dark-text hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent transition-colors"
+                      className="inline-flex items-center space-x-1.5 rounded-md border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-bg dark:bg-editorial-dark-bg px-2 py-1 text-[11px] font-mono text-editorial-light-text dark:text-editorial-dark-text hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent transition-colors"
                     >
                       <TechIcon name={skill} size={12} className="w-3 h-3 shrink-0" />
                       <span>{skill}</span>

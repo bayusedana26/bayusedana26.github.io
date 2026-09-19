@@ -15,7 +15,7 @@ export const en = {
     subheadline:
       "IT specialist with 5+ years of experience across software engineering, data analytics, and project management. Open to relevant full-time software & data positions, technology project collaborations, and corporate technical training.",
     badgeExperience: "5+ Years Experience",
-    badgeStatus: "Open to IT Roles & Training",
+    badgeStatus: "Software & Data Specialist",
     previewCV: "Preview CV",
     milestones: [
       {

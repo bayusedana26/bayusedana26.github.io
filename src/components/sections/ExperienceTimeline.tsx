@@ -38,51 +38,53 @@ export const ExperienceTimeline: React.FC = () => {
               </span>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               {formalExperiences.map((exp) => (
                 <article
                   key={exp.id}
-                  className="p-6 rounded-lg border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface space-y-3.5 hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent transition-colors"
+                  className="p-4 sm:p-5 rounded-lg border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface space-y-3 hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent transition-colors flex flex-col justify-between"
                 >
-                  <div className="flex flex-wrap items-start justify-between gap-3">
-                    <div className="flex items-start space-x-3.5">
-                      {exp.logo && (
-                        <InstitutionalLogo
-                          src={exp.logo}
-                          alt={exp.company}
-                          className="w-11 h-11 p-1.5"
-                          size={44}
-                        />
-                      )}
-                      <div>
-                        <div className="font-semibold text-xs font-mono text-editorial-light-accent dark:text-editorial-dark-accent">
-                          {exp.company}
+                  <div className="space-y-2.5">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center space-x-3 min-w-0">
+                        {exp.logo && (
+                          <InstitutionalLogo
+                            src={exp.logo}
+                            alt={exp.company}
+                            className="w-9 h-9 p-1.5 shrink-0"
+                            size={36}
+                          />
+                        )}
+                        <div className="min-w-0">
+                          <div className="font-semibold text-xs font-mono text-editorial-light-accent dark:text-editorial-dark-accent truncate">
+                            {exp.company}
+                          </div>
+                          <h3 className="text-sm sm:text-base font-bold text-editorial-light-text dark:text-editorial-dark-text truncate">
+                            {exp.role[language]}
+                          </h3>
                         </div>
-                        <h3 className="text-base sm:text-lg font-bold text-editorial-light-text dark:text-editorial-dark-text">
-                          {exp.role[language]}
-                        </h3>
+                      </div>
+                      <div className="shrink-0 inline-flex items-center space-x-1 font-mono text-[11px] text-editorial-light-muted dark:text-editorial-dark-muted pt-0.5">
+                        <Calendar className="w-3 h-3" />
+                        <span>
+                          {exp.start} - {exp.end === "Present" ? t.experience.present : exp.end}
+                        </span>
                       </div>
                     </div>
-                    <div className="inline-flex items-center space-x-1.5 font-mono text-xs text-editorial-light-muted dark:text-editorial-dark-muted pt-1">
-                      <Calendar className="w-3.5 h-3.5" />
-                      <span>
-                        {exp.start} - {exp.end === "Present" ? t.experience.present : exp.end}
-                      </span>
-                    </div>
+
+                    <ul className="space-y-1 text-xs text-editorial-light-muted dark:text-editorial-dark-muted leading-relaxed list-disc list-outside pl-3.5">
+                      {exp.description[language].map((bullet, idx) => (
+                        <li key={idx}>{bullet}</li>
+                      ))}
+                    </ul>
                   </div>
 
-                  <ul className="space-y-1.5 text-xs sm:text-sm text-editorial-light-muted dark:text-editorial-dark-muted leading-relaxed list-disc list-outside pl-4">
-                    {exp.description[language].map((bullet, idx) => (
-                      <li key={idx}>{bullet}</li>
-                    ))}
-                  </ul>
-
                   {exp.tags && (
-                    <div className="flex flex-wrap gap-1.5 pt-1">
+                    <div className="flex flex-wrap gap-1.5 pt-2 border-t border-editorial-light-border/50 dark:border-editorial-dark-border/50 mt-1">
                       {exp.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-bg dark:bg-editorial-dark-bg px-2 py-0.5 text-[11px] font-mono text-editorial-light-text dark:text-editorial-dark-text"
+                          className="rounded border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-bg dark:bg-editorial-dark-bg px-2 py-0.5 text-[10px] font-mono text-editorial-light-text dark:text-editorial-dark-text"
                         >
                           {tag}
                         </span>
@@ -105,45 +107,53 @@ export const ExperienceTimeline: React.FC = () => {
               </span>
             </div>
 
-            <p className="text-xs sm:text-sm text-editorial-light-muted dark:text-editorial-dark-muted leading-relaxed">
-              {t.experience.freelanceIntro}
-            </p>
-
-            <div className="space-y-6">
+            <div className="space-y-4">
               {freelanceExperiences.map((exp) => (
                 <article
                   key={exp.id}
-                  className="p-6 rounded-lg border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface space-y-3.5 hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent transition-colors"
+                  className="p-4 sm:p-5 rounded-lg border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface space-y-3 hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent transition-colors flex flex-col justify-between"
                 >
-                  <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <div>
-                      <div className="font-semibold text-xs font-mono text-editorial-light-accent dark:text-editorial-dark-accent">
-                        {exp.company}
+                  <div className="space-y-2.5">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex items-center space-x-3 min-w-0">
+                        {exp.logo && (
+                          <InstitutionalLogo
+                            src={exp.logo}
+                            alt={exp.company}
+                            className="w-9 h-9 p-1.5 shrink-0"
+                            size={36}
+                          />
+                        )}
+                        <div className="min-w-0">
+                          <div className="font-semibold text-xs font-mono text-editorial-light-accent dark:text-editorial-dark-accent truncate">
+                            {exp.company}
+                          </div>
+                          <h3 className="text-sm sm:text-base font-bold text-editorial-light-text dark:text-editorial-dark-text truncate">
+                            {exp.role[language]}
+                          </h3>
+                        </div>
                       </div>
-                      <h3 className="text-base sm:text-lg font-bold text-editorial-light-text dark:text-editorial-dark-text">
-                        {exp.role[language]}
-                      </h3>
+                      <div className="shrink-0 inline-flex items-center space-x-1 font-mono text-[11px] text-editorial-light-muted dark:text-editorial-dark-muted pt-0.5">
+                        <Calendar className="w-3 h-3" />
+                        <span>
+                          {exp.start} - {exp.end === "Present" ? t.experience.present : exp.end}
+                        </span>
+                      </div>
                     </div>
-                    <div className="inline-flex items-center space-x-1.5 font-mono text-xs text-editorial-light-muted dark:text-editorial-dark-muted">
-                      <Calendar className="w-3.5 h-3.5" />
-                      <span>
-                        {exp.start} - {exp.end === "Present" ? t.experience.present : exp.end}
-                      </span>
-                    </div>
+
+                    <ul className="space-y-1 text-xs text-editorial-light-muted dark:text-editorial-dark-muted leading-relaxed list-disc list-outside pl-3.5">
+                      {exp.description[language].map((bullet, idx) => (
+                        <li key={idx}>{bullet}</li>
+                      ))}
+                    </ul>
                   </div>
 
-                  <ul className="space-y-1.5 text-xs sm:text-sm text-editorial-light-muted dark:text-editorial-dark-muted leading-relaxed list-disc list-outside pl-4">
-                    {exp.description[language].map((bullet, idx) => (
-                      <li key={idx}>{bullet}</li>
-                    ))}
-                  </ul>
-
                   {exp.tags && (
-                    <div className="flex flex-wrap gap-1.5 pt-1">
+                    <div className="flex flex-wrap gap-1.5 pt-2 border-t border-editorial-light-border/50 dark:border-editorial-dark-border/50 mt-1">
                       {exp.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-bg dark:bg-editorial-dark-bg px-2 py-0.5 text-[11px] font-mono text-editorial-light-text dark:text-editorial-dark-text"
+                          className="rounded border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-bg dark:bg-editorial-dark-bg px-2 py-0.5 text-[10px] font-mono text-editorial-light-text dark:text-editorial-dark-text"
                         >
                           {tag}
                         </span>

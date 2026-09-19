@@ -15,6 +15,9 @@ export interface BrandIconProps {
     | "python"
     | "nodejs"
     | "sql"
+    | "nextjs"
+    | "next"
+    | "pandas"
     | string;
   className?: string;
   size?: number;
@@ -285,6 +288,55 @@ export const BrandIcon: React.FC<BrandIconProps> = ({
             d="M12 3c4.42 0 8 1.34 8 3s-3.58 3-8 3-8-1.34-8-3 3.58-3 8-3z"
             fill="#4169E1"
           />
+        </svg>
+      );
+
+    case "nextjs":
+    case "next":
+      return (
+        <svg
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className={className}
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="12" fill="#000000" />
+          <path
+            d="M14.99 17.5L8.73 8.35v7.3H7V6.5h1.74l6.25 9.15V6.5h1.73V17.5h-1.73z"
+            fill="#FFFFFF"
+          />
+          <path
+            d="M13.5 13.5l3.2 4.65c.34-.23.66-.49.95-.77L14.7 12.8l-1.2.7z"
+            fill="url(#brand_next_grad)"
+          />
+          <defs>
+            <linearGradient id="brand_next_grad" x1="13.5" y1="13.5" x2="17.5" y2="18" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#FFFFFF" />
+              <stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+      );
+
+    case "pandas":
+      return (
+        <svg
+          width={size}
+          height={size}
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className={className}
+          aria-hidden="true"
+        >
+          <rect width="24" height="24" rx="4" fill="#150458" />
+          <rect x="4.5" y="8" width="2.5" height="8" rx="0.5" fill="#FFD43B" />
+          <rect x="8.5" y="5" width="2.5" height="11" rx="0.5" fill="#FFFFFF" />
+          <rect x="12.5" y="8" width="2.5" height="11" rx="0.5" fill="#E70488" />
+          <rect x="16.5" y="11" width="2.5" height="5" rx="0.5" fill="#00C4CC" />
         </svg>
       );
 

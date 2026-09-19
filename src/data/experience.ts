@@ -9,7 +9,7 @@ export const formalExperiences: Experience[] = [
       en: "Instructor & Assessor: Applied AI & Data Analytics",
       id: "Instructor & Asesor: Applied AI & Data Analytics",
     },
-    start: "Jul 2024",
+    start: "Jul 2026",
     end: "Present",
     current: true,
     category: "formal",
@@ -149,6 +149,34 @@ export const freelanceExperiences: Experience[] = [
         "Instruktur in-house training AI dan analitik data untuk institusi terkemuka, termasuk Bank Indonesia KPw Jatim dan GenBI Bank Indonesia Sulsel.",
         "Mentor teknis data science di Belajarlagi, MySkill, dan ITSTEP Academy; membimbing 100+ peserta membedah dataset riil menggunakan Python dan SQL.",
         "Pemateri kuliah tamu dan workshop aplikatif di BINUS Online Learning, Universitas Terbuka, dan Pusdiklat TNI.",
+      ],
+    },
+  },
+  {
+    id: "institutional-training-advisory",
+    company: "Bank Indonesia & Institutional Engagements",
+    logo: "/assets/logos/bank-indonesia-icon.png",
+    role: {
+      en: "Executive Trainer & Academic Speaker",
+      id: "Executive Trainer & Pembicara Akademik",
+    },
+    start: "May 2023",
+    end: "Present",
+    current: true,
+    category: "freelance",
+    typeLabel: {
+      en: "Institutional Advisory",
+      id: "Pelatihan Institusional",
+    },
+    tags: ["Bank Indonesia", "Dana Pensiun", "BINUS", "Universitas Terbuka", "TNI"],
+    description: {
+      en: [
+        "Delivered specialized AI & applied data workshops for Bank Indonesia KPw Jatim analysts and GenBI Sulsel.",
+        "Facilitated technology and analytics sessions for Dana Pensiun, Pusdiklat TNI, and partner universities.",
+      ],
+      id: [
+        "Menyelenggarakan workshop AI & analitik data terapan untuk analis Bank Indonesia KPw Jatim dan GenBI Sulsel.",
+        "Mengisi sesi teknologi dan analitik untuk Dana Pensiun, Pusdiklat TNI, serta kuliah tamu di universitas mitra.",
       ],
     },
   },

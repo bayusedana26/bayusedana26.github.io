@@ -17,7 +17,7 @@ export const id: Dictionary = {
     subheadline:
       "Praktisi IT dengan 5+ tahun pengalaman dalam rekayasa software, analitik data, dan project management. Terbuka untuk posisi full-time di bidang software & data, kolaborasi proyek teknologi, serta pelatihan teknis.",
     badgeExperience: "5+ Tahun Pengalaman",
-    badgeStatus: "Open to IT Roles & Training",
+    badgeStatus: "Software & Data Specialist",
     previewCV: "Lihat CV",
     milestones: [
       {

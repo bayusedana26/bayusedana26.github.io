@@ -20,24 +20,18 @@ export const Hero: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left Column: Hero Narrative */}
           <div className="lg:col-span-7 space-y-6">
-            {/* Eyebrow & Live Status */}
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="font-mono text-xs uppercase tracking-widest text-editorial-light-muted dark:text-editorial-dark-muted font-semibold">
-                {t.hero.eyebrow}
+            {/* Hero Main Headline Highlight */}
+            <div className="space-y-2">
+              <span className="font-mono text-xs sm:text-sm uppercase tracking-widest text-editorial-light-accent dark:text-editorial-dark-accent font-bold">
+                Bayu Sedana
               </span>
-              <span className="inline-flex items-center space-x-1.5 rounded-full border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface px-2.5 py-0.5 text-[11px] font-mono text-editorial-light-text dark:text-editorial-dark-text">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span>{t.hero.badgeStatus}</span>
-              </span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-editorial-light-text dark:text-editorial-dark-text leading-[1.12]">
+                Software & Data Specialist
+              </h1>
             </div>
 
-            {/* Headline */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-editorial-light-text dark:text-editorial-dark-text leading-[1.12]">
-              {t.hero.headline}
-            </h1>
-
-            {/* Subheadline Copy */}
-            <p className="text-base sm:text-lg text-editorial-light-muted dark:text-editorial-dark-muted max-w-xl leading-relaxed">
+            {/* Subheadline Copy with Justified Text */}
+            <p className="text-base sm:text-lg text-editorial-light-muted dark:text-editorial-dark-muted max-w-xl leading-relaxed text-justify [text-justify:inter-word]">
               {t.hero.subheadline}
             </p>
 

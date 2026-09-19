@@ -1,0 +1,190 @@
+export const en = {
+  nav: {
+    home: "Profile",
+    about: "About",
+    experience: "Experience",
+    projects: "Projects",
+    certifications: "Certifications",
+    gallery: "Training Gallery",
+    collaboration: "Collaboration",
+    contact: "Contact",
+  },
+  hero: {
+    eyebrow: "PORTFOLIO & PROFILE • 2026",
+    headline: "Software & Data Specialist",
+    subheadline:
+      "IT specialist with 5+ years of experience across software engineering, data analytics, and project management. Open to relevant full-time software & data positions, technology project collaborations, and corporate technical training.",
+    badgeExperience: "5+ Years Experience",
+    badgeStatus: "Open to IT Roles & Training",
+    previewCV: "Preview CV",
+    milestones: [
+      {
+        number: "5+",
+        label: "Years Experience",
+        desc: "Software engineering, data & IT solutions",
+      },
+      {
+        number: "3",
+        label: "Formal In-House Roles",
+        desc: "Glints, Indofun & Asosiasi AI",
+      },
+      {
+        number: "Since Feb 2023",
+        label: "Consulting & Independent Projects",
+        desc: "Software, pitch decks & corporate training",
+      },
+    ],
+  },
+  about: {
+    title: "About & Work Approach",
+    p1: "I focus on **software engineering** and **applied data processing**. Building resilient backend services with Python and Node.js, designing high-efficiency SQL database schemas, and transforming raw operational logs into actionable business intelligence.",
+    p2: "My background combines formal in-house experience at **PT Glints Indonesia Group** (Software Engineer Trainee) and **PT Indofun Digital Technology** (Business Support & Analytics), alongside serving as Instructor and Assessor at **Asosiasi AI Indonesia**. In addition, since February 2023 I run independent consulting: technical project management, crafting **custom executive pitch decks**, and delivering corporate technical workshops for premier institutions including Bank Indonesia.",
+    p3: "Currently open to **full-time software and data roles** (Software Engineer, Data Analyst, or related technical roles), **project management & delivery collaborations**, and **enterprise corporate training**.",
+  },
+  capability: {
+    sectionTag: "CORE CAPABILITIES",
+    headline: "Technical Disciplines & Core Stack",
+    sub: "Bridging software engineering, machine learning pipelines, and operational data intelligence.",
+    items: {
+      build: {
+        tag: "01 / BUILD",
+        title: "Build",
+        subtitle: "Software · Systems · APIs",
+        desc: "Software development, backend fundamentals, system and data workflows, database design, and robust API integrations.",
+        skills: ["Python", "Node.js", "Express", "TypeScript", "REST APIs", "Git"],
+      },
+      analyze: {
+        tag: "02 / ANALYZE",
+        title: "Analyze",
+        subtitle: "SQL · Python · Pandas · EDA",
+        desc: "Advanced SQL querying, exploratory analysis (EDA), data cleaning, statistical modeling, and interactive dashboards.",
+        skills: ["SQL", "Pandas", "NumPy", "EDA", "Tableau", "Looker Studio"],
+      },
+      connect: {
+        tag: "03 / CONNECT",
+        title: "Connect",
+        subtitle: "Fintech · Project Management · Strategy",
+        desc: "Fintech payment gateway integrations, operational analytics, user retention tracking, and custom pitch deck creation.",
+        skills: ["Fintech APIs", "ShopeePay", "DANA", "Custom Decks", "Financial Models"],
+      },
+      teach: {
+        tag: "04 / TEACH",
+        title: "Teach",
+        subtitle: "Corporate Training · Mentoring",
+        desc: "In-house enterprise AI training, hands-on workshop facilitation, BNSP competency preparation, and curriculum engineering.",
+        skills: ["In-House Training", "AI Workshops", "BNSP Coaching", "Curriculum Design"],
+      },
+    },
+  },
+  institutions: {
+    title: "Training Partners & Notable Institutions",
+    subtitle: "Organizations, universities, and government bodies where technical training and workshops were delivered.",
+  },
+  education: {
+    title: "Education",
+    items: [
+      {
+        institution: "Universitas Muhammadiyah Yogyakarta",
+        degree: "Bachelor's Degree (S1) • Graduated 2020 (GPA 3.58 / 4.00)",
+      },
+      {
+        institution: "Universiti Sains Malaysia",
+        degree: "International Exchange Scholar Program (2016 - 2017)",
+      },
+    ],
+  },
+  experience: {
+    sectionTag: "EXPERIENCE",
+    headline: "Professional Career & Trajectory",
+    sub: "Distinction between full-time in-house engineering and independent consulting/training practice.",
+    groupFormal: "Formal In-House Roles",
+    groupFormalBadge: "Corporate / Full-Time",
+    groupFreelance: "Freelance & Consulting Practice",
+    groupFreelanceBadge: "Active Since Feb 2023",
+    freelanceIntro:
+      "Since February 2023, actively delivering independent consulting: technical project management, automated data workflows, executive pitch decks, and technical training for partner institutions.",
+    present: "Present",
+  },
+  projects: {
+    sectionTag: "SELECTED PORTFOLIO",
+    pageTitle: "Selected Projects & Works",
+    pageDesc:
+      "Curated collection of software engineering, Python machine learning, fintech integrations, Tableau visualizations, and web applications.",
+    ndaDisclaimer:
+      "Project Disclosure Note: The projects below represent work that can be shared publicly. Other commercial and in-house enterprise projects are not displayed due to non-disclosure agreements (NDA).",
+    filterAll: "All",
+    filterColab: "Google Colab",
+    filterApps: "Web App & Dashboard",
+    filterTableau: "Tableau",
+    filterIndofun: "Indofun & Fintech",
+    filterWorkshop: "AI Workshop",
+    previewHint: "Preview ↗",
+    openLiveApp: "Open Live App ↗",
+    openNotebook: "Open Notebook ↗",
+    openTableau: "Open Tableau ↗",
+    viewCover: "View Cover ↗",
+    openGuide: "Open Guide ↗",
+    openProgram: "Open Program ↗",
+    visitProject: "Visit Project ↗",
+    closeModal: "Close (ESC)",
+  },
+  certifications: {
+    sectionTag: "VERIFIED CREDENTIALS",
+    pageTitle: "Technical Certifications",
+    pageDesc:
+      "Verified technical credentials validating capabilities across cybersecurity, machine learning, data analysis, and advanced SQL.",
+    verifyOnline: "Verify Online ↗",
+    viewFull: "View Full Image ↗",
+    closeModal: "Close (ESC)",
+  },
+  gallery: {
+    sectionTag: "WORKSHOPS & ENGAGEMENTS",
+    pageTitle: "Training & Workshop Documentation",
+    pageDesc:
+      "Visual documentation from various in-house corporate training sessions, AI workshops, and university guest lectures.",
+    filterClientAll: "All Clients",
+    filterClientBI: "Bank Indonesia",
+    filterClientDanaPensiun: "Dana Pensiun",
+    filterClientBinus: "BINUS University",
+    filterClientUT: "Universitas Terbuka",
+    filterClientUntag: "UNTAG Samarinda",
+    filterClientWebinar: "Guest Lectures",
+    featuredAlbumBadge: "Corporate Training",
+    featuredAlbumTitle: "AI Utilization in Banking Environments",
+    featuredAlbumInst: "Bank Indonesia East Java Regional Office (KPw Jatim)",
+    featuredAlbumDesc:
+      "Intensive training session on AI utilization, applied data modeling, and automated analysis for analysts at Bank Indonesia KPw Jawa Timur.",
+    otherHeading: "Other Engagements & Workshops",
+    closeLightbox: "Close (ESC)",
+    prev: "Previous",
+    next: "Next",
+  },
+  collaboration: {
+    sectionTag: "COLLABORATION & HIRING",
+    headline: "Open for Full-Time Roles & Selected Collaborations",
+    sub: "Available for full-time positions in software and data roles, technical project management, automated data pipelines, custom pitch decks, and corporate training.",
+    services: [
+      "Full-Time Position in Software and Data Roles",
+      "Project Management & Delivery",
+      "Data Analytics & Interactive Dashboards",
+      "Executive Presentation & Pitch Decks",
+      "Corporate Workshops & In-House Training",
+      "API Design & Fintech Integrations",
+    ],
+    ndaHeading: "Strict NDA Confidentiality",
+    ndaDescription:
+      "Commercial collaborations and proprietary business logic can be conducted under a full Non-Disclosure Agreement (NDA). Sensitive client code and data integrity are rigorously safeguarded.",
+    ctaWhatsApp: "WhatsApp (Fast Response)",
+    ctaEmail: "Email Directly",
+    ctaLinkedIn: "Connect on LinkedIn",
+  },
+  footer: {
+    name: "Bayu Sedana",
+    tagline: "Software & Data Specialist • 5+ Years Experience • Open to IT Roles & Consulting",
+    rights: "All rights reserved.",
+    backToTop: "Back to top",
+    builtWith: "Modern editorial profile built with Next.js & Tailwind CSS.",
+  },
+};
+
+export type Dictionary = typeof en;

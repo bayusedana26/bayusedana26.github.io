@@ -1,0 +1,190 @@
+import { Dictionary } from "./en";
+
+export const id: Dictionary = {
+  nav: {
+    home: "Profil",
+    about: "Tentang",
+    experience: "Pengalaman",
+    projects: "Projects",
+    certifications: "Certifications",
+    gallery: "Dokumentasi Training",
+    collaboration: "Kolaborasi",
+    contact: "Kontak",
+  },
+  hero: {
+    eyebrow: "PORTOFOLIO & PROFIL • 2026",
+    headline: "Software & Data Specialist",
+    subheadline:
+      "Praktisi IT dengan 5+ tahun pengalaman dalam rekayasa software, analitik data, dan project management. Terbuka untuk posisi full-time di bidang software & data, kolaborasi proyek teknologi, serta pelatihan teknis.",
+    badgeExperience: "5+ Tahun Pengalaman",
+    badgeStatus: "Open to IT Roles & Training",
+    previewCV: "Lihat CV",
+    milestones: [
+      {
+        number: "5+",
+        label: "Tahun Pengalaman",
+        desc: "Rekayasa software, data & solusi IT",
+      },
+      {
+        number: "3",
+        label: "Peran Formal In-House",
+        desc: "Glints, Indofun & Asosiasi AI",
+      },
+      {
+        number: "Since Feb 2023",
+        label: "Konsultasi & Proyek Mandiri",
+        desc: "Software, pitch deck & corporate training",
+      },
+    ],
+  },
+  about: {
+    title: "Tentang & Pendekatan Kerja",
+    p1: "Saya berfokus pada **rekayasa perangkat lunak** dan **pengolahan data terapan**. Mengembangkan layanan backend dengan Python dan Node.js, merancang struktur database SQL yang efisien, serta menerjemahkan data operasional menjadi insight yang dapat langsung digunakan untuk pengambilan keputusan bisnis.",
+    p2: "Rekam jejak kerja saya mencakup peran formal di **PT Glints Indonesia Group** (Software Engineer Trainee) dan **PT Indofun Digital Technology** (Business Support & Analytics), serta instruktur dan asesor di **Asosiasi AI Indonesia**. Di luar peran korporat, sejak Februari 2023 saya aktif menjalankan proyek independen: manajemen proyek teknologi, pembuatan **custom presentation & pitch decks** untuk kebutuhan bisnis, dan pelatihan teknis untuk institusi seperti Bank Indonesia.",
+    p3: "Saat ini saya terbuka untuk **posisi full-time di bidang software dan data** (Software Engineer, Data Analyst, maupun peran teknis terkait), **kolaborasi project management & delivery**, serta **corporate training & pelatihan teknis**.",
+  },
+  capability: {
+    sectionTag: "KAPABILITAS UTAMA",
+    headline: "Disiplin Teknis & Stack Keahlian",
+    sub: "Menghubungkan rekayasa perangkat lunak, alur kerja machine learning, dan kecerdasan analitika data operasional.",
+    items: {
+      build: {
+        tag: "01 / BANGUN",
+        title: "Bangun",
+        subtitle: "Software · Sistem · API",
+        desc: "Pengembangan software, fundamental backend, perancangan sistem dan alur data, desain database, dan integrasi API yang andal.",
+        skills: ["Python", "Node.js", "Express", "TypeScript", "REST APIs", "Git"],
+      },
+      analyze: {
+        tag: "02 / ANALISIS",
+        title: "Analisis",
+        subtitle: "SQL · Python · Pandas · EDA",
+        desc: "Kueri SQL tingkat lanjut, eksplorasi data (EDA), pembersihan data, pemodelan statistik, dan pembuatan dasbor visual interaktif.",
+        skills: ["SQL", "Pandas", "NumPy", "EDA", "Tableau", "Looker Studio"],
+      },
+      connect: {
+        tag: "03 / HUBUNGKAN",
+        title: "Hubungkan",
+        subtitle: "Fintech · Project Management · Strategi",
+        desc: "Integrasi payment gateway fintech, analitika operasional, pemantauan retensi pengguna, dan pembuatan pitch deck bisnis eksekutif.",
+        skills: ["Fintech APIs", "ShopeePay", "DANA", "Custom Decks", "Model Finansial"],
+      },
+      teach: {
+        tag: "04 / AJAR",
+        title: "Ajar",
+        subtitle: "Corporate Training · Mentoring",
+        desc: "Pelatihan teknis in-house korporat seputar AI, fasilitasi workshop praktikal, pendampingan kompetensi BNSP, dan perancangan silabus.",
+        skills: ["In-House Training", "Workshop AI", "Coaching BNSP", "Desain Kurikulum"],
+      },
+    },
+  },
+  institutions: {
+    title: "Mitra Pelatihan & Institusi",
+    subtitle: "Lembaga perbankan, universitas, instansi militer, dan korporasi yang pernah mempercayakan pelatihan teknis.",
+  },
+  education: {
+    title: "Pendidikan Formal",
+    items: [
+      {
+        institution: "Universitas Muhammadiyah Yogyakarta",
+        degree: "Program Sarjana (S1) • Lulus 2020 (IPK 3.58 / 4.00)",
+      },
+      {
+        institution: "Universiti Sains Malaysia",
+        degree: "Exchange Scholar Program (2016 - 2017)",
+      },
+    ],
+  },
+  experience: {
+    sectionTag: "PENGALAMAN KERJA",
+    headline: "Pengalaman Kerja & Karir",
+    sub: "Pemisahan transparan antara pengalaman kerja in-house (penuh waktu) dan track konsultasi freelance independen.",
+    groupFormal: "Pengalaman Penuh Waktu (In-House)",
+    groupFormalBadge: "Kantoran / Full-Time",
+    groupFreelance: "Freelance & Konsultasi Independen",
+    groupFreelanceBadge: "Sejak Feb 2023",
+    freelanceIntro:
+      "Sejak Februari 2023, aktif menjalankan proyek independen: manajemen proyek teknologi, automasi data pipeline, produksi custom pitch decks eksekutif, dan bimbingan teknis institusi.",
+    present: "Sekarang",
+  },
+  projects: {
+    sectionTag: "SELECTED PORTFOLIO",
+    pageTitle: "Selected Projects & Works",
+    pageDesc:
+      "Koleksi proyek pilihan di bidang rekayasa software, machine learning Python, integrasi fintech, visualisasi Tableau, dan sistem web app.",
+    ndaDisclaimer:
+      "Catatan Keterbukaan Proyek: Proyek di bawah ini adalah portofolio yang dapat saya bagikan ke publik. Proyek komersial dan in-house lainnya tidak ditampilkan secara terbuka karena terikat perjanjian kerahasiaan (NDA).",
+    filterAll: "Semua",
+    filterColab: "Google Colab",
+    filterApps: "Web App & Dashboard",
+    filterTableau: "Tableau",
+    filterIndofun: "Indofun & Fintech",
+    filterWorkshop: "AI Workshop",
+    previewHint: "Pratinjau ↗",
+    openLiveApp: "Buka Live App ↗",
+    openNotebook: "Buka Notebook ↗",
+    openTableau: "Buka Tableau ↗",
+    viewCover: "Lihat Cover ↗",
+    openGuide: "Buka Panduan ↗",
+    openProgram: "Buka Program ↗",
+    visitProject: "Kunjungi Proyek ↗",
+    closeModal: "Tutup (ESC)",
+  },
+  certifications: {
+    sectionTag: "VERIFIED CREDENTIALS",
+    pageTitle: "Technical Certifications",
+    pageDesc:
+      "Sertifikasi teknis yang saya ambil untuk validasi kapabilitas di bidang cybersecurity, machine learning, dan advanced SQL.",
+    verifyOnline: "Verifikasi Online ↗",
+    viewFull: "Buka Gambar ↗",
+    closeModal: "Tutup (ESC)",
+  },
+  gallery: {
+    sectionTag: "WORKSHOPS & ENGAGEMENTS",
+    pageTitle: "Dokumentasi Training & Workshop",
+    pageDesc:
+      "Dokumentasi visual dari berbagai sesi in-house corporate training, workshop artificial intelligence, dan kuliah umum.",
+    filterClientAll: "Semua Klien",
+    filterClientBI: "Bank Indonesia",
+    filterClientDanaPensiun: "Dana Pensiun",
+    filterClientBinus: "BINUS University",
+    filterClientUT: "Universitas Terbuka",
+    filterClientUntag: "UNTAG Samarinda",
+    filterClientWebinar: "Kuliah Umum",
+    featuredAlbumBadge: "Corporate Training",
+    featuredAlbumTitle: "Pemanfaatan AI di Lingkungan Bank",
+    featuredAlbumInst: "Bank Indonesia Kantor Perwakilan Jawa Timur",
+    featuredAlbumDesc:
+      "Sesi training intensif mengenai pemanfaatan AI, pemodelan data terapan, dan otomasi analisis data untuk tim analis Bank Indonesia KPw Jawa Timur.",
+    otherHeading: "Dokumentasi Kegiatan Lainnya",
+    closeLightbox: "Tutup (ESC)",
+    prev: "Sebelumnya",
+    next: "Berikutnya",
+  },
+  collaboration: {
+    sectionTag: "KOLABORASI & KARIR",
+    headline: "Terbuka untuk Posisi Full-Time & Kolaborasi Proyek",
+    sub: "Tersedia untuk posisi full-time di bidang software dan data, project management, automasi data, pembuatan pitch deck eksekutif, serta pelatihan korporat.",
+    services: [
+      "Posisi Full-Time Software & Data",
+      "Project Management & Delivery",
+      "Analisis Data & Dasbor Interaktif",
+      "Presentasi Eksekutif & Pitch Decks",
+      "Workshop & In-House Training Korporat",
+      "Desain API & Integrasi Fintech",
+    ],
+    ndaHeading: "Dukungan Penuh Kerahasiaan (NDA)",
+    ndaDescription:
+      "Kolaborasi komersial dan logika bisnis proprietary klien dapat dijalankan dengan perjanjian kerahasiaan (NDA). Integritas kode dan kerahasiaan data selalu diprioritaskan.",
+    ctaWhatsApp: "WhatsApp (Respon Cepat)",
+    ctaEmail: "Kirim Email Langsung",
+    ctaLinkedIn: "Terhubung di LinkedIn",
+  },
+  footer: {
+    name: "Bayu Sedana",
+    tagline: "Software & Data Specialist • 5+ Tahun Pengalaman • Terbuka untuk Peran IT & Konsultasi",
+    rights: "Hak cipta dilindungi undang-undang.",
+    backToTop: "Kembali ke atas",
+    builtWith: "Profil profesional modern dibangun dengan Next.js & Tailwind CSS.",
+  },
+};

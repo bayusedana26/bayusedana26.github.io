@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a" />
+      <stop offset="50%" stop-color="#0f2b5c" />
+      <stop offset="100%" stop-color="#0a1931" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fcd34d" />
+      <stop offset="50%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <filter id="subtleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- Outer Circle -->
+  <circle cx="200" cy="200" r="185" fill="url(#shieldGrad)" stroke="url(#goldGrad)" stroke-width="8" filter="url(#subtleShadow)" />
+  <circle cx="200" cy="200" r="168" fill="none" stroke="url(#goldGrad)" stroke-width="2.5" stroke-dasharray="6,4" />
+
+  <!-- Inner Crest Background -->
+  <circle cx="200" cy="200" r="126" fill="#081830" stroke="url(#goldGrad)" stroke-width="3" />
+
+  <!-- Institutional Bank / Pillar Motif -->
+  <!-- Pediment / Roof Triangle -->
+  <polygon points="200,108 140,140 260,140" fill="url(#goldGrad)" />
+  <!-- Architrave / Top Beam -->
+  <rect x="144" y="142" width="112" height="8" rx="2" fill="url(#goldGrad)" />
+  <!-- 4 Pillars -->
+  <rect x="152" y="153" width="14" height="42" rx="2" fill="url(#goldGrad)" opacity="0.95" />
+  <rect x="178" y="153" width="14" height="42" rx="2" fill="url(#goldGrad)" opacity="0.95" />
+  <rect x="208" y="153" width="14" height="42" rx="2" fill="url(#goldGrad)" opacity="0.95" />
+  <rect x="234" y="153" width="14" height="42" rx="2" fill="url(#goldGrad)" opacity="0.95" />
+  <!-- Base Beam -->
+  <rect x="140" y="197" width="120" height="9" rx="2" fill="url(#goldGrad)" />
+  <rect x="134" y="208" width="132" height="7" rx="2" fill="url(#goldGrad)" opacity="0.9" />
+
+  <!-- Shield Badge Center -->
+  <path d="M200,224 C175,224 165,240 165,258 C165,285 200,305 200,305 C200,305 235,285 235,258 C235,240 225,224 200,224 Z" fill="url(#goldGrad)" opacity="0.95" />
+  <path d="M200,230 C180,230 172,244 172,258 C172,279 200,296 200,296 C200,296 228,279 228,258 C228,244 220,230 200,230 Z" fill="#0b1e3b" />
+  
+  <!-- Star in Center -->
+  <polygon points="200,244 204,254 214,254 206,260 209,270 200,264 191,270 194,260 186,254 196,254" fill="url(#goldGrad)" />
+
+  <!-- Wreath Branches Left & Right -->
+  <path d="M110,230 C105,190 120,150 135,130 M108,210 C102,185 116,160 128,145 M116,245 C112,225 118,200 130,180" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8" />
+  <path d="M290,230 C295,190 280,150 265,130 M292,210 C298,185 284,160 272,145 M284,245 C288,225 282,200 270,180" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8" />
+
+  <!-- Circular Text Along Paths -->
+  <path id="textArcTop" d="M 68,200 A 132,132 0 0,1 332,200" fill="none" />
+  <path id="textArcBottom" d="M 332,200 A 132,132 0 0,1 68,200" fill="none" />
+
+  <text fill="#ffffff" font-size="18" font-family="'Inter', -apple-system, BlinkMacSystemFont, sans-serif" font-weight="700" letter-spacing="4">
+    <textPath href="#textArcTop" startOffset="50%" text-anchor="middle">
+      DANA PENSIUN
+    </textPath>
+  </text>
+
+  <text fill="url(#goldGrad)" font-size="14" font-family="'Inter', -apple-system, BlinkMacSystemFont, sans-serif" font-weight="600" letter-spacing="3.5">
+    <textPath href="#textArcBottom" startOffset="50%" text-anchor="middle">
+      MULTI-INSTITUSI
+    </textPath>
+  </text>
+</svg>

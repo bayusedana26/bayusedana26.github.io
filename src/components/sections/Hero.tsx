@@ -15,25 +15,72 @@ export const Hero: React.FC = () => {
   const [cvModalOpen, setCvModalOpen] = useState(false);
 
   return (
-    <section className="relative w-full border-b border-editorial-light-border dark:border-editorial-dark-border py-14 md:py-20 lg:py-24 overflow-hidden">
-      <div className="editorial-container">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-          {/* Left Column: Hero Narrative */}
-          <div className="lg:col-span-7 space-y-6">
-            {/* Hero Main Headline Highlight */}
-            <div className="space-y-2">
-              <span className="font-mono text-xs sm:text-sm uppercase tracking-widest text-editorial-light-accent dark:text-editorial-dark-accent font-bold">
-                Bayu Sedana
-              </span>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-editorial-light-text dark:text-editorial-dark-text leading-[1.12]">
-                Software & Data Specialist
+    <section className="relative w-full border-b border-editorial-light-border dark:border-editorial-dark-border py-10 md:py-16 lg:py-20 overflow-hidden">
+      <div className="editorial-container space-y-8 sm:space-y-10">
+        {/* Dedicated Hero Headline & Identity Section */}
+        <div className="relative rounded-2xl border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface/75 dark:bg-editorial-dark-surface/75 backdrop-blur-md p-6 sm:p-8 lg:p-10 overflow-hidden shadow-xs">
+          {/* Subtle Ambient Radial Glow */}
+          <div className="absolute top-0 right-0 -mt-16 -mr-16 w-80 h-80 bg-blue-500/10 dark:bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-1/3 -mb-16 w-64 h-64 bg-indigo-500/10 dark:bg-indigo-500/15 rounded-full blur-2xl pointer-events-none" />
+
+          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="space-y-3">
+              {/* Role Kicker & Live Status Pill */}
+              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-bg/80 dark:bg-editorial-dark-bg/80 text-xs font-mono text-editorial-light-muted dark:text-editorial-dark-muted shadow-2xs">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span className="font-semibold text-editorial-light-text dark:text-editorial-dark-text">
+                  {t.hero.headline}
+                </span>
+                <span className="text-editorial-light-border dark:text-editorial-dark-border">•</span>
+                <span>{t.hero.badgeExperience}</span>
+              </div>
+
+              {/* Big Bold Hero Name */}
+              <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-editorial-light-text dark:text-editorial-dark-text leading-[0.96]">
+                {t.hero.name}
               </h1>
+
+              {/* Sub-headline / Specialty & Domains */}
+              <div className="flex flex-wrap items-center gap-2 pt-1">
+                <span className="text-lg sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-500 to-sky-400 dark:from-blue-400 dark:via-indigo-300 dark:to-sky-300">
+                  {t.hero.headline}
+                </span>
+                <span className="hidden sm:inline text-editorial-light-border dark:border-editorial-dark-border">•</span>
+                <span className="text-xs sm:text-sm font-mono text-editorial-light-muted dark:text-editorial-dark-muted">
+                  {t.hero.domains}
+                </span>
+              </div>
             </div>
 
-            {/* Subheadline Copy with Justified Text */}
-            <p className="text-base sm:text-lg text-editorial-light-muted dark:text-editorial-dark-muted max-w-xl leading-relaxed text-justify [text-justify:inter-word]">
-              {t.hero.subheadline}
-            </p>
+            {/* Quick Availability / Location Badges */}
+            <div className="flex flex-wrap lg:flex-col items-start lg:items-end gap-2.5 shrink-0">
+              <div className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-bg dark:bg-editorial-dark-bg text-xs font-mono text-editorial-light-text dark:text-editorial-dark-text">
+                <span className="text-editorial-light-accent dark:text-editorial-dark-accent">📍</span>
+                <span>{t.hero.locationTag}</span>
+              </div>
+              <div className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border border-emerald-500/25 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-mono font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <span>{t.hero.statusAvailable}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          {/* Left Column: Hero Narrative */}
+          <div className="lg:col-span-7 space-y-6">
+            {/* Executive Overview Copy */}
+            <div className="space-y-2">
+              <span className="font-mono text-xs uppercase tracking-widest text-editorial-light-accent dark:text-editorial-dark-accent font-semibold">
+                {t.hero.executiveOverview}
+              </span>
+              <p className="text-base sm:text-lg text-editorial-light-muted dark:text-editorial-dark-muted leading-relaxed text-justify [text-justify:inter-word]">
+                {t.hero.subheadline}
+              </p>
+            </div>
 
             {/* Direct Social & Connect Action Buttons */}
             <div className="pt-2 flex flex-wrap items-center gap-2.5">

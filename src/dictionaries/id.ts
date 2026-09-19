@@ -12,8 +12,13 @@ export const id: Dictionary = {
     contact: "Kontak",
   },
   hero: {
+    name: "Bayu Sedana",
     eyebrow: "PORTOFOLIO & PROFIL • 2026",
     headline: "Software & Data Specialist",
+    domains: "Software Engineering · Data Analytics · Technical Advisory",
+    executiveOverview: "Ringkasan Eksekutif",
+    statusAvailable: "Tersedia untuk Posisi & Advisory",
+    locationTag: "Indonesia (WIB / UTC+7)",
     subheadline:
       "Praktisi IT dengan 5+ tahun pengalaman dalam rekayasa software, analitik data, dan project management. Terbuka untuk posisi full-time di bidang software & data, kolaborasi proyek teknologi, serta pelatihan teknis.",
     badgeExperience: "5+ Tahun Pengalaman",

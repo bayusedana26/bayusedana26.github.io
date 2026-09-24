@@ -35,4 +35,5 @@ next-env.d.ts
 # internal agent & docs
 .agents/
 .brd/
+.memory/
 AGENTS.md

@@ -9,17 +9,21 @@ import { Menu, X } from "lucide-react";
 import { BrandIcon } from "@/components/ui";
 
 export const Navbar: React.FC = () => {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: "#", label: t.nav.home },
-    { href: "#about", label: t.nav.about },
     { href: "#experience", label: t.nav.experience },
     { href: "#projects", label: t.nav.projects },
-    { href: "#certifications", label: t.nav.certifications },
-    { href: "#gallery", label: t.nav.gallery },
+    { href: "#capabilities", label: language === "id" ? "Keahlian" : "Capabilities" },
+    { href: "#credentials", label: t.nav.certifications },
+    { href: "#beyond", label: language === "id" ? "Dokumentasi" : "Beyond Work" },
   ];
+
+  const handleNavClick = (href: string) => {
+    setMobileMenuOpen(false);
+    window.location.hash = href;
+  };
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-bg/95 dark:bg-editorial-dark-bg/95 backdrop-blur supports-[backdrop-filter]:bg-editorial-light-bg/80 dark:supports-[backdrop-filter]:bg-editorial-dark-bg/80 transition-colors duration-200">
@@ -33,7 +37,7 @@ export const Navbar: React.FC = () => {
             Bayu Sedana
           </span>
           <span className="hidden md:inline-block text-xs font-mono text-editorial-light-muted dark:text-editorial-dark-muted border-l border-editorial-light-border dark:border-editorial-dark-border pl-2">
-            Software & Data
+            Online CV
           </span>
         </Link>
 
@@ -43,6 +47,10 @@ export const Navbar: React.FC = () => {
             <a
               key={link.href}
               href={link.href}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick(link.href);
+              }}
               className="text-editorial-light-muted hover:text-editorial-light-text dark:text-editorial-dark-muted dark:hover:text-editorial-dark-text transition-colors"
             >
               {link.label}
@@ -86,7 +94,10 @@ export const Navbar: React.FC = () => {
               <a
                 key={link.href}
                 href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(link.href);
+                }}
                 className="text-editorial-light-text dark:text-editorial-dark-text hover:text-editorial-light-accent dark:hover:text-editorial-dark-accent py-1"
               >
                 {link.label}

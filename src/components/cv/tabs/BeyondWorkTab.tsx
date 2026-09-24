@@ -123,7 +123,7 @@ export const BeyondWorkTab: React.FC = () => {
                         : "Applied AI and economic data modeling workshop with analysts at Bank Indonesia KPw Jatim.",
                   })
                 }
-                className="group relative h-28 sm:h-36 rounded-xl border border-editorial-light-border dark:border-editorial-dark-border overflow-hidden bg-neutral-950 cursor-pointer shadow-2xs hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent transition-all"
+                className="group relative aspect-[4/3] rounded-xl border border-editorial-light-border dark:border-editorial-dark-border overflow-hidden bg-neutral-950 cursor-pointer shadow-2xs hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent transition-all"
               >
                 <Image
                   src={photo.image}
@@ -222,7 +222,7 @@ export const BeyondWorkTab: React.FC = () => {
               }
               className="group cursor-pointer rounded-xl border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface overflow-hidden shadow-xs hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent transition-colors flex flex-col justify-between"
             >
-              <div className="relative w-full h-44 bg-neutral-900 overflow-hidden">
+              <div className="relative w-full aspect-[16/10] bg-neutral-950 overflow-hidden">
                 <Image
                   src={item.image}
                   alt={item.title[language]}

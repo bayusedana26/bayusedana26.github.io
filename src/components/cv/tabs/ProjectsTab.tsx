@@ -91,14 +91,14 @@ export const ProjectsTab: React.FC = () => {
           >
             {/* Project Image Frame */}
             {project.image && (
-              <div className="relative w-full h-44 bg-neutral-900 border-b border-editorial-light-border/60 dark:border-editorial-dark-border/60 overflow-hidden">
+              <div className="relative w-full aspect-[16/10] bg-neutral-950 border-b border-editorial-light-border/60 dark:border-editorial-dark-border/60 overflow-hidden">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
                   className="object-cover object-top hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-black/70 text-white backdrop-blur-xs">
+                <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-black/75 text-white backdrop-blur-xs">
                   {project.categoryBadge[language]}
                 </div>
               </div>

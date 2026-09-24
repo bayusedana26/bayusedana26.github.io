@@ -125,7 +125,7 @@ export const CapabilitiesTab: React.FC = () => {
           {language === "id" ? "Daftar Stack Teknologi & Spesialisasi" : "Technology Stack & Specializations"}
         </h3>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {techItems.map((tech) => (
             <div
               key={tech.name}

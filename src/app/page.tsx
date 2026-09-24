@@ -51,13 +51,13 @@ export default function HomePage() {
   return (
     <main className="editorial-container py-6 sm:py-8 lg:py-10">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Sticky Executive Profile Sidebar (4.5 cols on desktop) */}
-        <div className="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto no-scrollbar">
+        {/* Left Column: Sticky Executive Profile Sidebar (4 cols on desktop, naturally fits viewport, zero inner scrollbar) */}
+        <div className="lg:col-span-4 xl:col-span-4 lg:sticky lg:top-20 h-fit self-start">
           <ProfileSidebar onOpenCv={() => setIsCvOpen(true)} />
         </div>
 
-        {/* Right Column: Dynamic Segmented Online CV Canvas (7.5 cols on desktop) */}
-        <div className="lg:col-span-7 xl:col-span-8 min-w-0 space-y-4">
+        {/* Right Column: Dynamic Segmented Online CV Canvas (8 cols on desktop, spacious & readable) */}
+        <div className="lg:col-span-8 xl:col-span-8 min-w-0 space-y-6">
           <CvTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
           <div className="pt-2">

@@ -41,22 +41,18 @@ export const Navbar: React.FC = () => {
           </span>
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center space-x-6 text-sm font-medium">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick(link.href);
-              }}
-              className="text-editorial-light-muted hover:text-editorial-light-text dark:text-editorial-dark-muted dark:hover:text-editorial-dark-text transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+        {/* Desktop Executive Status Indicator (Prevents duplicate navigation buttons with CvTabs) */}
+        <div className="hidden lg:flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-editorial-light-border/80 dark:border-editorial-dark-border/80 bg-editorial-light-surface/60 dark:bg-editorial-dark-surface/60 text-xs font-mono">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span className="text-editorial-light-text dark:text-editorial-dark-text font-medium">
+            {language === "id"
+              ? "Terbuka untuk Rekrutmen & Advisory Teknikal"
+              : "Open for Full-Time Roles & Advisory"}
+          </span>
+        </div>
 
         {/* Controls & Quick Action */}
         <div className="flex items-center space-x-3">

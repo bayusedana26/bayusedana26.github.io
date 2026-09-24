@@ -50,32 +50,34 @@ export const CredentialsTab: React.FC = () => {
               key={cert.id}
               className="flex flex-col justify-between rounded-xl border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface overflow-hidden shadow-xs hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent transition-colors"
             >
-              {/* Visual Certificate Preview: Click links directly to official website */}
+              {/* Visual Certificate Preview: Click links directly to official website or modal */}
               {cert.verifyUrl ? (
                 <a
                   href={cert.verifyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative w-full h-44 bg-neutral-900 overflow-hidden block border-b border-editorial-light-border/60 dark:border-editorial-dark-border/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-editorial-light-accent"
+                  className="group relative w-full aspect-[16/11] bg-neutral-100 dark:bg-neutral-900/60 p-2.5 overflow-hidden block border-b border-editorial-light-border/60 dark:border-editorial-dark-border/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-editorial-light-accent"
                   title={
                     language === "id"
                       ? "Klik untuk buka verifikasi resmi"
                       : "Click to open official verification"
                   }
                 >
-                  <Image
-                    src={cert.image}
-                    alt={cert.title}
-                    fill
-                    className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
-                  />
+                  <div className="relative w-full h-full rounded-lg overflow-hidden border border-editorial-light-border/40 dark:border-editorial-dark-border/40 bg-white dark:bg-neutral-950 flex items-center justify-center">
+                    <Image
+                      src={cert.image}
+                      alt={cert.title}
+                      fill
+                      className="object-contain p-1 group-hover:scale-[1.03] transition-transform duration-300"
+                    />
+                  </div>
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
                     <span className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-semibold bg-white text-neutral-900 shadow-md">
                       <span>{language === "id" ? "Buka Verifikasi Resmi" : "Verify Credential"}</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </span>
                   </div>
-                  <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-black/70 text-white backdrop-blur-xs">
+                  <div className="absolute top-4 right-4 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-black/75 text-white backdrop-blur-xs">
                     {cert.badge}
                   </div>
                 </a>
@@ -83,21 +85,23 @@ export const CredentialsTab: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setSelectedCert(cert)}
-                  className="group relative w-full h-44 bg-neutral-900 overflow-hidden block border-b border-editorial-light-border/60 dark:border-editorial-dark-border/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-editorial-light-accent text-left"
+                  className="group relative w-full aspect-[16/11] bg-neutral-100 dark:bg-neutral-900/60 p-2.5 overflow-hidden block border-b border-editorial-light-border/60 dark:border-editorial-dark-border/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-editorial-light-accent text-left"
                   title={language === "id" ? "Klik untuk memperbesar" : "Click to enlarge"}
                 >
-                  <Image
-                    src={cert.image}
-                    alt={cert.title}
-                    fill
-                    className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
-                  />
+                  <div className="relative w-full h-full rounded-lg overflow-hidden border border-editorial-light-border/40 dark:border-editorial-dark-border/40 bg-white dark:bg-neutral-950 flex items-center justify-center">
+                    <Image
+                      src={cert.image}
+                      alt={cert.title}
+                      fill
+                      className="object-contain p-1 group-hover:scale-[1.03] transition-transform duration-300"
+                    />
+                  </div>
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
                     <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-md text-xs font-mono font-semibold bg-white text-neutral-900 shadow-md">
                       <span>{language === "id" ? "Perbesar Sertifikat" : "Enlarge Certificate"}</span>
                     </span>
                   </div>
-                  <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-black/70 text-white backdrop-blur-xs">
+                  <div className="absolute top-4 right-4 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-black/75 text-white backdrop-blur-xs">
                     {cert.badge}
                   </div>
                 </button>

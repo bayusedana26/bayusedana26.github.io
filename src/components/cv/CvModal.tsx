@@ -62,18 +62,7 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose }) => {
               className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-medium border border-editorial-light-border dark:border-editorial-dark-border hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent text-editorial-light-text dark:text-editorial-dark-text hover:text-editorial-light-accent dark:hover:text-editorial-dark-accent transition-colors"
             >
               <ExternalLink className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">
-                {language === "id" ? "Buka File Penuh" : "Open Full Image"}
-              </span>
-            </a>
-
-            <a
-              href="/assets/images/Bayu_CV.png"
-              download="Bayu_Sedana_CV.png"
-              className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-semibold bg-editorial-light-accent dark:bg-editorial-dark-accent text-white hover:opacity-90 transition-opacity"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>{language === "id" ? "Unduh" : "Download"}</span>
+              <span>{language === "id" ? "Buka Tab Baru" : "Open in New Tab"}</span>
             </a>
 
             <button

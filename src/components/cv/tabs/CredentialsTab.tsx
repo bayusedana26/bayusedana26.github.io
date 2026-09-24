@@ -35,7 +35,7 @@ export const CredentialsTab: React.FC = () => {
         </p>
       </div>
 
-      {/* Certifications Section */}
+      {/* Certifications with Visual Image Previews (Revision 6) */}
       <div className="space-y-4">
         <div className="flex items-center space-x-2">
           <ShieldCheck className="w-4 h-4 text-editorial-light-accent dark:text-editorial-dark-accent" />
@@ -44,48 +44,108 @@ export const CredentialsTab: React.FC = () => {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {certifications.map((cert) => (
             <div
               key={cert.id}
-              className="flex flex-col justify-between rounded-xl border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface p-4 sm:p-5 shadow-xs hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent transition-colors space-y-3"
+              className="flex flex-col justify-between rounded-xl border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface overflow-hidden shadow-xs hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent transition-colors"
             >
-              <div className="space-y-2">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-medium border border-editorial-light-border/70 dark:border-editorial-dark-border/70 bg-editorial-light-bg dark:bg-editorial-dark-bg text-editorial-light-accent dark:text-editorial-dark-accent">
+              {/* Visual Certificate Preview: Click links directly to official website */}
+              {cert.verifyUrl ? (
+                <a
+                  href={cert.verifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative w-full h-44 bg-neutral-900 overflow-hidden block border-b border-editorial-light-border/60 dark:border-editorial-dark-border/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-editorial-light-accent"
+                  title={
+                    language === "id"
+                      ? "Klik untuk buka verifikasi resmi"
+                      : "Click to open official verification"
+                  }
+                >
+                  <Image
+                    src={cert.image}
+                    alt={cert.title}
+                    fill
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                    <span className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-semibold bg-white text-neutral-900 shadow-md">
+                      <span>{language === "id" ? "Buka Verifikasi Resmi" : "Verify Credential"}</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+                  <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-black/70 text-white backdrop-blur-xs">
                     {cert.badge}
-                  </span>
-                  <span className="text-[11px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted">
-                    {cert.date}
-                  </span>
+                  </div>
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setSelectedCert(cert)}
+                  className="group relative w-full h-44 bg-neutral-900 overflow-hidden block border-b border-editorial-light-border/60 dark:border-editorial-dark-border/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-editorial-light-accent text-left"
+                  title={language === "id" ? "Klik untuk memperbesar" : "Click to enlarge"}
+                >
+                  <Image
+                    src={cert.image}
+                    alt={cert.title}
+                    fill
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                    <span className="inline-flex items-center space-x-1 px-2.5 py-1 rounded-md text-xs font-mono font-semibold bg-white text-neutral-900 shadow-md">
+                      <span>{language === "id" ? "Perbesar Sertifikat" : "Enlarge Certificate"}</span>
+                    </span>
+                  </div>
+                  <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-black/70 text-white backdrop-blur-xs">
+                    {cert.badge}
+                  </div>
+                </button>
+              )}
+
+              {/* Certificate Details */}
+              <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs font-bold text-editorial-light-accent dark:text-editorial-dark-accent">
+                      {cert.issuer}
+                    </span>
+                    <span className="text-[11px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted">
+                      {cert.date}
+                    </span>
+                  </div>
+
+                  <h4 className="text-sm font-bold text-editorial-light-text dark:text-editorial-dark-text leading-snug">
+                    {cert.title}
+                  </h4>
+
+                  {cert.description && (
+                    <p className="text-xs text-editorial-light-muted dark:text-editorial-dark-muted leading-relaxed">
+                      {cert.description[language]}
+                    </p>
+                  )}
                 </div>
 
-                <h4 className="text-sm font-bold text-editorial-light-text dark:text-editorial-dark-text leading-snug">
-                  {cert.title}
-                </h4>
+                <div className="pt-3 border-t border-editorial-light-border/60 dark:border-editorial-dark-border/60 flex items-center justify-between text-xs font-mono">
+                  {cert.credentialId ? (
+                    <span className="text-[10px] text-editorial-light-muted dark:text-editorial-dark-muted truncate max-w-[150px]">
+                      ID: {cert.credentialId}
+                    </span>
+                  ) : (
+                    <span></span>
+                  )}
 
-                <p className="text-xs font-semibold text-editorial-light-muted dark:text-editorial-dark-muted">
-                  {cert.issuer}
-                </p>
-
-                {cert.description && (
-                  <p className="text-xs text-editorial-light-muted dark:text-editorial-dark-muted leading-relaxed">
-                    {cert.description[language]}
-                  </p>
-                )}
-              </div>
-
-              <div className="pt-3 border-t border-editorial-light-border/60 dark:border-editorial-dark-border/60 flex items-center justify-between text-xs font-mono">
-                {cert.credentialId ? (
-                  <span className="text-[10px] text-editorial-light-muted dark:text-editorial-dark-muted truncate max-w-[150px]">
-                    ID: {cert.credentialId}
-                  </span>
-                ) : (
-                  <span></span>
-                )}
-
-                <div className="flex items-center space-x-2">
-                  {cert.image && (
+                  {cert.verifyUrl ? (
+                    <a
+                      href={cert.verifyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center space-x-1 font-semibold text-editorial-light-accent dark:text-editorial-dark-accent hover:underline"
+                    >
+                      <span>{language === "id" ? "Buka Situs Resmi" : "Verify Website"}</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  ) : (
                     <button
                       type="button"
                       onClick={() => setSelectedCert(cert)}
@@ -93,18 +153,6 @@ export const CredentialsTab: React.FC = () => {
                     >
                       {language === "id" ? "Pratinjau" : "Preview"}
                     </button>
-                  )}
-
-                  {cert.verifyUrl && (
-                    <a
-                      href={cert.verifyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-1 font-semibold text-editorial-light-accent dark:text-editorial-dark-accent hover:underline"
-                    >
-                      <span>{language === "id" ? "Verifikasi" : "Verify"}</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
                   )}
                 </div>
               </div>

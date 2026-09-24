@@ -4,22 +4,25 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { projects } from "@/data/projects";
-import { FolderGit2, ExternalLink } from "lucide-react";
+import { FolderGit2, ExternalLink, ShieldAlert } from "lucide-react";
 
 export const ProjectsTab: React.FC = () => {
   const { language } = useLanguage();
   const [filter, setFilter] = useState<string>("all");
 
+  // Removed Pitch Decks per user request
   const categories = [
-    { id: "all", label: { en: "All Projects", id: "Semua Proyek" } },
+    { id: "all", label: { en: "All Public Work", id: "Semua Proyek Publik" } },
     { id: "apps", label: { en: "Web Apps", id: "Aplikasi Web" } },
-    { id: "colab", label: { en: "ML & Colab", id: "ML & Notebook" } },
+    { id: "colab", label: { en: "ML & Colab", id: "Machine Learning" } },
     { id: "tableau", label: { en: "Tableau & BI", id: "Tableau & BI" } },
-    { id: "decks", label: { en: "Pitch Decks", id: "Pitch Decks" } },
   ];
 
+  // Exclude deck category completely
+  const publicProjects = projects.filter((p) => p.category !== ("decks" as any));
+
   const filteredProjects =
-    filter === "all" ? projects : projects.filter((p) => p.category === filter);
+    filter === "all" ? publicProjects : publicProjects.filter((p) => p.category === filter);
 
   return (
     <div
@@ -32,29 +35,46 @@ export const ProjectsTab: React.FC = () => {
       <div className="space-y-1.5 pb-4 border-b border-editorial-light-border dark:border-editorial-dark-border">
         <div className="flex items-center space-x-2 text-xs font-mono font-semibold uppercase tracking-wider text-editorial-light-accent dark:text-editorial-dark-accent">
           <FolderGit2 className="w-3.5 h-3.5" />
-          <span>{language === "id" ? "BUKTI HASIL KARYA & TEKNOLOGI" : "PROOF OF WORK & TECH"}</span>
+          <span>{language === "id" ? "BUKTI IMPLEMENTASI TEKNIS" : "TECHNICAL IMPLEMENTATIONS"}</span>
         </div>
         <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-editorial-light-text dark:text-editorial-dark-text">
-          {language === "id" ? "Proyek Terpilih & Implementasi" : "Featured Projects & Implementations"}
+          {language === "id" ? "Proyek Publik Terpilih" : "Selected Public Projects"}
         </h2>
         <p className="text-xs sm:text-sm text-editorial-light-muted dark:text-editorial-dark-muted">
           {language === "id"
-            ? "Koleksi aplikasi web live, pipeline machine learning di Colab, dashboard visualisasi Tableau, dan pitch deck eksekutif."
-            : "Live web apps, machine learning pipelines in Colab, interactive Tableau BI dashboards, and executive pitch decks."}
+            ? "Implementasi aplikasi web, pemodelan data di Google Colab, dan visualisasi analitik interaktif."
+            : "Production web applications, machine learning pipelines in Google Colab, and interactive Tableau dashboards."}
         </p>
       </div>
 
-      {/* Filter Chips */}
+      {/* NDA Confidentiality Disclaimer Banner */}
+      <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 dark:bg-amber-500/10 p-4 sm:p-4.5 text-xs text-amber-900 dark:text-amber-200 space-y-1.5 shadow-2xs">
+        <div className="flex items-center space-x-2 font-mono font-semibold text-amber-800 dark:text-amber-300">
+          <ShieldAlert className="w-4 h-4 shrink-0 text-amber-600 dark:text-amber-400" />
+          <span>
+            {language === "id"
+              ? "Catatan Kerahasiaan (Non-Disclosure Agreement / NDA)"
+              : "Confidentiality Notice (Non-Disclosure Agreement / NDA)"}
+          </span>
+        </div>
+        <p className="leading-relaxed text-editorial-light-text/90 dark:text-editorial-dark-text/90">
+          {language === "id"
+            ? "Koleksi proyek di bawah ini adalah sebagian karya yang dapat dipublikasikan secara terbuka. Sebagian besar arsitektur backend, sistem internal korporat, dan integrasi database klien dilindungi oleh perjanjian kerahasiaan (NDA)."
+            : "The projects displayed below represent authorized public work. Proprietary enterprise backend architectures, production databases, and internal analytics systems remain strictly protected under Non-Disclosure Agreements (NDA)."}
+        </p>
+      </div>
+
+      {/* Category Filter Chips */}
       <div className="flex flex-wrap gap-2">
         {categories.map((cat) => (
           <button
             key={cat.id}
             onClick={() => setFilter(cat.id)}
             type="button"
-            className={`px-3 py-1 rounded-md text-xs font-mono font-medium transition-colors ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-colors ${
               filter === cat.id
-                ? "bg-editorial-light-accent dark:bg-editorial-dark-accent text-white font-semibold"
-                : "border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface text-editorial-light-muted dark:text-editorial-dark-muted hover:text-editorial-light-text dark:hover:text-editorial-dark-text"
+                ? "bg-editorial-light-text text-editorial-light-bg dark:bg-editorial-dark-text dark:text-editorial-dark-bg font-semibold shadow-2xs"
+                : "border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface text-editorial-light-muted dark:text-editorial-dark-muted hover:text-editorial-light-text dark:hover:text-editorial-dark-text hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent"
             }`}
           >
             {cat.label[language]}
@@ -62,7 +82,7 @@ export const ProjectsTab: React.FC = () => {
         ))}
       </div>
 
-      {/* Project Cards Grid */}
+      {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {filteredProjects.map((project) => (
           <div

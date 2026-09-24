@@ -27,8 +27,8 @@ export const ExperienceTab: React.FC = () => {
         </h2>
         <p className="text-xs sm:text-sm text-editorial-light-muted dark:text-editorial-dark-muted">
           {language === "id"
-            ? "Rekam jejak terbukti dalam software engineering, analitik data, dan corporate technical mentoring."
-            : "Proven track record in software engineering, operational data analytics, and corporate mentoring."}
+            ? "Rekam jejak software engineering, analitik data operasional, dan corporate mentoring sejak 2021."
+            : "Software engineering, operational data analytics, and corporate mentoring since 2021."}
         </p>
       </div>
 

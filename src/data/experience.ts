@@ -21,7 +21,7 @@ export const formalExperiences: Experience[] = [
     description: {
       en: [
         "Designed comprehensive curricula and instructed industry practitioners in applied Machine Learning, Python data analytics, and AI API integration.",
-        "Directly mentored hundreds of trainees and corporate professionals through end-to-end data capstone projects toward national BNSP certification.",
+        "Directly mentored hundreds of trainees and corporate professionals through data capstone projects toward national BNSP certification.",
         "Facilitated tailored in-house training sessions and university academic partnerships to accelerate data technology adoption.",
       ],
       id: [
@@ -114,7 +114,7 @@ export const freelanceExperiences: Experience[] = [
       en: [
         "Consulted on technical project management, API integrations, and data workflow automation for SMEs, digital agencies, and tech startups.",
         "Crafted executive custom pitch decks, business strategy blueprints, and structured financial models for investor fundraising and product validation.",
-        "Evaluated cloud and hosting cost efficiencies, recommending pragmatic, scalable technology stacks suited to client budgets.",
+        "Evaluated cloud and hosting cost structures, recommending technology stacks suited to client budgets.",
       ],
       id: [
         "Memberikan konsultasi manajemen proyek teknologi, integrasi API, dan automasi alur kerja data bagi UMKM, digital agency, serta startup teknologi.",
@@ -141,7 +141,7 @@ export const freelanceExperiences: Experience[] = [
     tags: ["Python", "SQL", "In-House Training", "BNSP Coaching", "Bank Indonesia"],
     description: {
       en: [
-        "Delivered in-house corporate training in AI and data analytics for institutions including Bank Indonesia KPw Jatim and GenBI Bank Indonesia Sulsel.",
+        "Delivered in-house training in AI and data analytics for institutions including Bank Indonesia KPw Jatim and GenBI Bank Indonesia Sulsel.",
         "Mentored 100+ students and career pivoters at Belajarlagi, MySkill, and ITSTEP Academy, dissecting real-world datasets with Python and SQL.",
         "Delivered guest lectures and hands-on workshops at BINUS Online Learning, Universitas Terbuka, and Pusdiklat TNI.",
       ],

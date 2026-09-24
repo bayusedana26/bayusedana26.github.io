@@ -13,7 +13,7 @@ export const id: Dictionary = {
   },
   hero: {
     name: "Bayu Sedana",
-    eyebrow: "PORTOFOLIO & PROFIL • 2026",
+    eyebrow: "SOFTWARE & DATA · INDONESIA · 2026",
     headline: "Software & Data Specialist",
     domains: "Software Engineering · Data Analytics · Technical Advisory",
     executiveOverview: "Ringkasan Eksekutif",
@@ -51,7 +51,7 @@ export const id: Dictionary = {
   capability: {
     sectionTag: "KAPABILITAS UTAMA",
     headline: "Disiplin Teknis & Stack Keahlian",
-    sub: "Menghubungkan rekayasa perangkat lunak, alur kerja machine learning, dan kecerdasan analitika data operasional.",
+    sub: "Rekayasa perangkat lunak, machine learning pipeline, dan data analytics untuk operasi bisnis.",
     items: {
       build: {
         tag: "01 / BANGUN",
@@ -190,6 +190,6 @@ export const id: Dictionary = {
     tagline: "Software & Data Specialist • 5+ Tahun Pengalaman • Terbuka untuk Peran IT & Konsultasi",
     rights: "Hak cipta dilindungi undang-undang.",
     backToTop: "Kembali ke atas",
-    builtWith: "Profil profesional modern dibangun dengan Next.js & Tailwind CSS.",
+    builtWith: "Dibangun dengan Next.js & Tailwind CSS.",
   },
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import { ThemeToggle } from "./ThemeToggle";
@@ -11,6 +11,18 @@ import { BrandIcon } from "@/components/ui";
 export const Navbar: React.FC = () => {
   const { language, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMobileMenuOpen(false);
+      }
+    };
+    if (mobileMenuOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mobileMenuOpen]);
 
   const navLinks = [
     { href: "#experience", label: t.nav.experience },
@@ -30,7 +42,7 @@ export const Navbar: React.FC = () => {
       <div className="editorial-container flex h-16 items-center justify-between">
         {/* Brand */}
         <Link
-          href="#"
+          href="/"
           className="group flex items-baseline space-x-2 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-editorial-light-accent dark:focus-visible:ring-editorial-dark-accent rounded"
         >
           <span className="font-semibold tracking-tight text-base sm:text-lg text-editorial-light-text dark:text-editorial-dark-text">
@@ -41,18 +53,8 @@ export const Navbar: React.FC = () => {
           </span>
         </Link>
 
-        {/* Desktop Executive Status Indicator (Prevents duplicate navigation buttons with CvTabs) */}
-        <div className="hidden lg:flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-editorial-light-border/80 dark:border-editorial-dark-border/80 bg-editorial-light-surface/60 dark:bg-editorial-dark-surface/60 text-xs font-mono">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </span>
-          <span className="text-editorial-light-text dark:text-editorial-dark-text font-medium">
-            {language === "id"
-              ? "Terbuka untuk Rekrutmen & Advisory Teknikal"
-              : "Open for Full-Time Roles & Advisory"}
-          </span>
-        </div>
+        {/* Spacer: CvTabs handles section navigation below the header */}
+        <div />
 
         {/* Controls & Quick Action */}
         <div className="flex items-center space-x-3">
@@ -69,11 +71,11 @@ export const Navbar: React.FC = () => {
             <span>WhatsApp</span>
           </a>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button with 44px tap target */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-md text-editorial-light-muted hover:text-editorial-light-text dark:text-editorial-dark-muted dark:hover:text-editorial-dark-text"
+            className="lg:hidden min-w-[44px] min-h-[44px] p-2 flex items-center justify-center rounded-md text-editorial-light-muted hover:text-editorial-light-text dark:text-editorial-dark-muted dark:hover:text-editorial-dark-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-editorial-light-accent"
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
           >

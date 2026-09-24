@@ -1,16 +1,27 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { certifications } from "@/data/certifications";
-import { educationList } from "@/data/experience";
 import { InstitutionalLogo } from "@/components/ui";
-import { Award, GraduationCap, ExternalLink, X, ShieldCheck } from "lucide-react";
+import { Award, ExternalLink, X, ShieldCheck } from "lucide-react";
 
 export const CredentialsTab: React.FC = () => {
   const { language } = useLanguage();
   const [selectedCert, setSelectedCert] = useState<(typeof certifications)[0] | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setSelectedCert(null);
+      }
+    };
+    if (selectedCert) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedCert]);
 
   return (
     <div
@@ -23,10 +34,10 @@ export const CredentialsTab: React.FC = () => {
       <div className="space-y-1.5 pb-4 border-b border-editorial-light-border dark:border-editorial-dark-border">
         <div className="flex items-center space-x-2 text-xs font-mono font-semibold uppercase tracking-wider text-editorial-light-accent dark:text-editorial-dark-accent">
           <Award className="w-3.5 h-3.5" />
-          <span>{language === "id" ? "KREDENSIAL RESMI & EDUKASI" : "CREDENTIALS & EDUCATION"}</span>
+          <span>{language === "id" ? "KREDENSIAL & SERTIFIKASI RESMI" : "VERIFIED CREDENTIALS"}</span>
         </div>
         <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-editorial-light-text dark:text-editorial-dark-text">
-          {language === "id" ? "Sertifikasi Profesi & Pendidikan" : "Certifications & Education"}
+          {language === "id" ? "Sertifikasi Profesi Terverifikasi" : "Professional Certifications"}
         </h2>
         <p className="text-xs sm:text-sm text-editorial-light-muted dark:text-editorial-dark-muted">
           {language === "id"
@@ -157,51 +168,6 @@ export const CredentialsTab: React.FC = () => {
                     >
                       {language === "id" ? "Pratinjau" : "Preview"}
                     </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Formal Education Section */}
-      <div className="space-y-4 pt-4 border-t border-editorial-light-border/60 dark:border-editorial-dark-border/60">
-        <div className="flex items-center space-x-2">
-          <GraduationCap className="w-4 h-4 text-emerald-500" />
-          <h3 className="text-sm font-mono font-semibold uppercase tracking-wider text-editorial-light-text dark:text-editorial-dark-text">
-            {language === "id" ? "Pendidikan Formal & Program Internasional" : "Formal Education & Scholar Programs"}
-          </h3>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {educationList.map((edu, idx) => (
-            <div
-              key={idx}
-              className="flex items-start space-x-3.5 p-4 sm:p-5 rounded-xl border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface shadow-xs"
-            >
-              <InstitutionalLogo
-                src={edu.logo}
-                alt={edu.institution}
-                className="w-10 h-10 p-1.5 shrink-0"
-                size={40}
-              />
-              <div className="space-y-1 min-w-0">
-                <h4 className="text-sm font-bold text-editorial-light-text dark:text-editorial-dark-text leading-snug">
-                  {edu.institution}
-                </h4>
-                <p className="text-xs text-editorial-light-accent dark:text-editorial-dark-accent font-medium">
-                  {edu.degree[language]}
-                </p>
-                <div className="flex items-center space-x-2 text-[11px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted">
-                  <span>
-                    {typeof edu.period === "string" ? edu.period : edu.period[language]}
-                  </span>
-                  {edu.gpa && (
-                    <>
-                      <span>•</span>
-                      <span>IPK {edu.gpa}</span>
-                    </>
                   )}
                 </div>
               </div>

@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { featuredBIPhotos, otherGallerySessions } from "@/data/gallery";
-import { Camera, Mail, ArrowUpRight, X, Building2, CheckCircle2, ChevronRight } from "lucide-react";
+import { Camera, Mail, ArrowUpRight, X, Building2 } from "lucide-react";
 import { BrandIcon } from "@/components/ui";
 
 interface LightboxPhoto {
@@ -19,11 +19,20 @@ export const BeyondWorkTab: React.FC = () => {
   const [selectedPhoto, setSelectedPhoto] = useState<LightboxPhoto | null>(null);
   const [activeSessionFilter, setActiveSessionFilter] = useState<string>("all");
 
+  // Close lightbox on Escape
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedPhoto(null);
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
+
   const filterCategories = [
     { id: "all", label: { en: "All Engagements", id: "Semua Sesi" } },
     { id: "bi", label: { en: "Bank Indonesia", id: "Bank Indonesia" } },
-    { id: "campus", label: { en: "Universities", id: "Kampus & Akademik" } },
-    { id: "pension", label: { en: "Enterprise & Pension", id: "Dana Pensiun & Korporat" } },
+    { id: "campus", label: { en: "Universities", id: "Kampus" } },
+    { id: "pension", label: { en: "Enterprise", id: "Korporat" } },
   ];
 
   const filteredSessions = otherGallerySessions.filter((item) => {
@@ -42,76 +51,71 @@ export const BeyondWorkTab: React.FC = () => {
       aria-labelledby="tab-beyond"
       className="space-y-10 animate-fadeIn"
     >
-      {/* Header Banner */}
+      {/* Header */}
       <div className="space-y-1.5 pb-4 border-b border-editorial-light-border dark:border-editorial-dark-border">
         <div className="flex items-center space-x-2 text-xs font-mono font-semibold uppercase tracking-wider text-editorial-light-accent dark:text-editorial-dark-accent">
           <Camera className="w-3.5 h-3.5" />
-          <span>{language === "id" ? "DOKUMENTASI TRAINING & JEJAK ADVISORY" : "TRAINING & ENGAGEMENTS"}</span>
+          <span>{language === "id" ? "DOKUMENTASI TRAINING & ADVISORY" : "TRAINING & FIELD ENGAGEMENTS"}</span>
         </div>
         <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-editorial-light-text dark:text-editorial-dark-text">
           {language === "id"
             ? "Dokumentasi Lapangan & Corporate Training"
-            : "In-House Training & Field Engagements"}
+            : "In-House Training & Field Documentation"}
         </h2>
         <p className="text-xs sm:text-sm text-editorial-light-muted dark:text-editorial-dark-muted">
           {language === "id"
             ? "Bukti rekam jejak sebagai instruktur teknis dan konsultan data di bank sentral, universitas, dan korporat."
-            : "Direct documentation as lead instructor and technical mentor across central banking, universities, and enterprise funds."}
+            : "Direct documentation as technical instructor and data consultant across central banking, universities, and enterprise."}
         </p>
       </div>
 
-      {/* FEATURED SPOTLIGHT: BANK INDONESIA KPW JATIM (Revision 7) */}
-      <div className="rounded-2xl border-2 border-editorial-light-accent/30 dark:border-editorial-dark-accent/40 bg-editorial-light-surface dark:bg-editorial-dark-surface p-5 sm:p-7 shadow-sm space-y-6">
+      {/* FEATURED: Bank Indonesia KPw Jatim */}
+      <div className="rounded-2xl border-2 border-editorial-light-accent/30 dark:border-editorial-dark-accent/40 bg-editorial-light-surface dark:bg-editorial-dark-surface p-5 sm:p-7 shadow-sm space-y-5">
+        {/* Card header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-editorial-light-border/70 dark:border-editorial-dark-border/70">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400 shrink-0">
               <Building2 className="w-5 h-5" />
             </div>
             <div className="space-y-0.5">
-              <div className="flex items-center space-x-2">
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-blue-600 text-white uppercase tracking-wider">
-                  Featured Case Study
-                </span>
-                <span className="text-xs font-mono text-editorial-light-muted dark:text-editorial-dark-muted">
-                  Surabaya, Jawa Timur
-                </span>
-              </div>
+              <p className="text-[10px] font-mono font-semibold uppercase tracking-wider text-editorial-light-muted dark:text-editorial-dark-muted">
+                Surabaya, Jawa Timur
+              </p>
               <h3 className="text-base sm:text-lg font-bold text-editorial-light-text dark:text-editorial-dark-text">
                 Bank Indonesia KPw Jawa Timur
               </h3>
             </div>
           </div>
 
-          <div className="text-left sm:text-right">
-            <span className="inline-block px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-xs font-mono font-medium">
-              Lead Technical Instructor
-            </span>
-          </div>
+          <span className="self-start sm:self-center inline-block px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-xs font-mono font-medium whitespace-nowrap">
+            {language === "id" ? "Technical Instructor" : "Technical Instructor"}
+          </span>
         </div>
 
-        <div className="space-y-3">
+        {/* Description */}
+        <div className="space-y-2">
           <h4 className="text-sm sm:text-base font-semibold text-editorial-light-text dark:text-editorial-dark-text">
             {language === "id"
-              ? "Pelatihan In-House Eksekutif: Implementasi AI Terapan & Analitika Data untuk Tim Analis Kebijakan"
-              : "Executive In-House Training: Applied AI & Advanced Data Analytics for Policy Analysts"}
+              ? "Pelatihan In-House: AI Terapan & Data Analytics untuk Tim Analis Kebijakan"
+              : "In-House Training: Applied AI & Data Analytics for Policy Analysts"}
           </h4>
           <p className="text-xs sm:text-sm text-editorial-light-muted dark:text-editorial-dark-muted leading-relaxed">
             {language === "id"
-              ? "Menyelenggarakan lokakarya pemrograman terapan untuk jajaran analis Bank Indonesia KPw Jatim. Materi mencakup pemodelan machine learning dengan Python, automasi alur pemrosesan data ekonomi, bedah algoritma prediksi, serta review kode langsung untuk efisiensi perumusan kebijakan daerah."
-              : "Delivered comprehensive hands-on training for economic policy analysts at Bank Indonesia KPw Jatim. Topics focused on Python machine learning workflows, automated economic reporting pipelines, algorithmic modeling, and live code clinics."}
+              ? "Menyelenggarakan lokakarya pemrograman terapan untuk jajaran analis Bank Indonesia KPw Jatim. Materi mencakup Python machine learning, automasi alur data ekonomi, algoritma prediksi, serta review kode langsung."
+              : "Delivered hands-on programming workshops for economic policy analysts at Bank Indonesia KPw Jatim. Topics: Python machine learning workflows, automated economic reporting, predictive modeling, and live code clinics."}
           </p>
         </div>
 
-        {/* Bank Indonesia Jatim Photo Grid */}
+        {/* Photo grid: NO text overlays on images */}
         <div className="space-y-2">
           <span className="block text-xs font-mono font-semibold uppercase tracking-wider text-editorial-light-muted dark:text-editorial-dark-muted">
-            {language === "id" ? "Galeri Sesi Pelatihan Bank Indonesia Jatim:" : "Training Session Gallery:"}
+            {language === "id" ? "Galeri Sesi:" : "Session Gallery:"}
           </span>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
             {featuredBIPhotos.map((photo) => (
-              <div
+              <button
                 key={photo.id}
+                type="button"
                 onClick={() =>
                   setSelectedPhoto({
                     title: photo.title[language],
@@ -119,11 +123,12 @@ export const BeyondWorkTab: React.FC = () => {
                     org: "Bank Indonesia KPw Jatim",
                     desc:
                       language === "id"
-                        ? "Sesi lokakarya AI terapan dan pemodelan data ekonomi bersama tim analis Bank Indonesia KPw Jatim."
+                        ? "Sesi workshop AI terapan dan pemodelan data ekonomi bersama tim analis Bank Indonesia KPw Jatim."
                         : "Applied AI and economic data modeling workshop with analysts at Bank Indonesia KPw Jatim.",
                   })
                 }
-                className="group relative aspect-[4/3] rounded-xl border border-editorial-light-border dark:border-editorial-dark-border overflow-hidden bg-neutral-950 cursor-pointer shadow-2xs hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent transition-all"
+                className="group relative aspect-[4/3] rounded-xl border border-editorial-light-border dark:border-editorial-dark-border overflow-hidden bg-neutral-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-editorial-light-accent shadow-2xs"
+                aria-label={photo.title[language]}
               >
                 <Image
                   src={photo.image}
@@ -131,32 +136,33 @@ export const BeyondWorkTab: React.FC = () => {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-2.5">
-                  <span className="text-white text-[11px] font-medium leading-tight line-clamp-1 group-hover:text-blue-200 transition-colors">
-                    {photo.title[language]}
+                {/* Subtle hover overlay only: no persistent text on image */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-200 flex items-center justify-center">
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity text-white text-[11px] font-mono font-semibold px-2 py-1 rounded bg-black/60 backdrop-blur-xs">
+                    {language === "id" ? "Lihat foto" : "View photo"}
                   </span>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Direct Collaboration CTA Card */}
+      {/* Contact CTA */}
       <div className="rounded-xl border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface p-5 sm:p-6 shadow-xs space-y-4">
         <div className="space-y-1">
           <span className="text-xs font-mono font-semibold text-editorial-light-accent dark:text-editorial-dark-accent uppercase tracking-wider">
-            {language === "id" ? "KOLABORASI & KONSULTASI" : "ENGAGEMENT & CONSULTATION"}
+            {language === "id" ? "KOLABORASI & KONSULTASI" : "HIRE & COLLABORATE"}
           </span>
           <h3 className="text-base sm:text-lg font-bold text-editorial-light-text dark:text-editorial-dark-text">
             {language === "id"
-              ? "Siap Berkolaborasi untuk Peran Full-Time, Advisory, atau In-House Training"
-              : "Available for Full-Time Roles, Technical Advisory, and Corporate Workshops"}
+              ? "Tersedia untuk Full-Time, Advisory, dan In-House Training"
+              : "Available for Full-Time Roles, Advisory, and Corporate Workshops"}
           </h3>
           <p className="text-xs sm:text-sm text-editorial-light-muted dark:text-editorial-dark-muted leading-relaxed">
             {language === "id"
-              ? "Sedang mencari Software Engineer / Data Specialist untuk tim Anda, atau membutuhkan pelatihan teknis backend & AI untuk korporat? Hubungi langsung via WhatsApp atau Email."
-              : "Recruiting a Software & Data Specialist for your engineering team, or planning custom technical training for your organization? Get in touch directly via WhatsApp or Email."}
+              ? "Butuh Software & Data Specialist untuk tim Anda, atau ingin mengadakan pelatihan teknis AI untuk korporat? Hubungi via WhatsApp atau Email."
+              : "Recruiting a Software & Data Specialist, or planning custom technical training for your organization? Reach out via WhatsApp or Email."}
           </p>
         </div>
 
@@ -168,8 +174,7 @@ export const BeyondWorkTab: React.FC = () => {
             className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-semibold transition-colors shadow-xs"
           >
             <BrandIcon name="whatsapp" size={16} />
-            <span>{language === "id" ? "Diskusi via WhatsApp" : "Chat on WhatsApp"}</span>
-            <ArrowUpRight className="w-3.5 h-3.5 opacity-80" />
+            <span>{language === "id" ? "Chat WhatsApp" : "Chat on WhatsApp"}</span>
           </a>
 
           <a
@@ -182,14 +187,13 @@ export const BeyondWorkTab: React.FC = () => {
         </div>
       </div>
 
-      {/* Engagements Across Other Institutions */}
+      {/* Other Institutional Engagements */}
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <h3 className="text-sm font-mono font-semibold uppercase tracking-wider text-editorial-light-text dark:text-editorial-dark-text">
-            {language === "id" ? "Dokumentasi Mitra Institusi Lainnya" : "Other Institutional Engagements"}
+            {language === "id" ? "Kegiatan Institusi Lainnya" : "Other Institutional Engagements"}
           </h3>
 
-          {/* Filter Chips */}
           <div className="flex flex-wrap gap-1.5">
             {filterCategories.map((cat) => (
               <button
@@ -208,10 +212,12 @@ export const BeyondWorkTab: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Improved cards: larger image, bolder details */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {filteredSessions.map((item) => (
-            <div
+            <button
               key={item.id}
+              type="button"
               onClick={() =>
                 setSelectedPhoto({
                   title: item.title[language],
@@ -220,34 +226,42 @@ export const BeyondWorkTab: React.FC = () => {
                   desc: item.description ? item.description[language] : undefined,
                 })
               }
-              className="group cursor-pointer rounded-xl border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface overflow-hidden shadow-xs hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent transition-colors flex flex-col justify-between"
+              className="group text-left rounded-2xl border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface overflow-hidden shadow-xs hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent hover:shadow-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-editorial-light-accent flex flex-col"
             >
-              <div className="relative w-full aspect-[16/10] bg-neutral-950 overflow-hidden">
+              {/* Image: taller ratio, clean */}
+              <div className="relative w-full aspect-[16/9] bg-neutral-950 overflow-hidden">
                 <Image
                   src={item.image}
                   alt={item.title[language]}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="object-cover group-hover:scale-[1.04] transition-transform duration-500"
                 />
-                <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-black/75 text-white backdrop-blur-xs">
-                  {item.clientLabel[language]}
+                {/* Client badge: top-left corner, semi-transparent */}
+                <div className="absolute top-0 left-0 right-0 p-3 flex items-start justify-between bg-gradient-to-b from-black/50 to-transparent">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-black/60 text-white backdrop-blur-xs">
+                    {item.clientLabel[language]}
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
               </div>
 
-              <div className="p-4 space-y-1.5">
-                <h4 className="text-sm font-bold text-editorial-light-text dark:text-editorial-dark-text leading-snug">
-                  {item.title[language]}
-                </h4>
-                <p className="text-xs text-editorial-light-accent dark:text-editorial-dark-accent font-semibold">
-                  {item.org}
-                </p>
+              {/* Details */}
+              <div className="p-4 flex-1 flex flex-col justify-between space-y-2">
+                <div className="space-y-1">
+                  <h4 className="text-sm font-bold text-editorial-light-text dark:text-editorial-dark-text leading-snug">
+                    {item.title[language]}
+                  </h4>
+                  <p className="text-xs font-semibold text-editorial-light-accent dark:text-editorial-dark-accent">
+                    {item.org}
+                  </p>
+                </div>
                 {item.description && (
                   <p className="text-xs text-editorial-light-muted dark:text-editorial-dark-muted leading-relaxed line-clamp-2">
                     {item.description[language]}
                   </p>
                 )}
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
@@ -267,12 +281,12 @@ export const BeyondWorkTab: React.FC = () => {
           >
             <div className="flex items-center justify-between px-5 py-3.5 border-b border-neutral-800">
               <span className="font-mono text-xs text-blue-400 font-semibold truncate max-w-md">
-                {selectedPhoto.title} • {selectedPhoto.org}
+                {selectedPhoto.title} · {selectedPhoto.org}
               </span>
               <button
                 type="button"
                 onClick={() => setSelectedPhoto(null)}
-                className="p-1 rounded text-neutral-400 hover:text-white"
+                className="p-1 rounded text-neutral-400 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />

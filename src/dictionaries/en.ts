@@ -11,7 +11,7 @@ export const en = {
   },
   hero: {
     name: "Bayu Sedana",
-    eyebrow: "PORTFOLIO & PROFILE • 2026",
+    eyebrow: "SOFTWARE & DATA · INDONESIA · 2026",
     headline: "Software & Data Specialist",
     domains: "Software Engineering · Data Analytics · Technical Advisory",
     executiveOverview: "Executive Overview",
@@ -42,20 +42,20 @@ export const en = {
   },
   about: {
     title: "About & Work Approach",
-    p1: "I focus on **software engineering** and **applied data processing**. Building resilient backend services with Python and Node.js, designing high-efficiency SQL database schemas, and transforming raw operational logs into actionable business intelligence.",
+    p1: "I focus on **software engineering** and **applied data processing**. Building backend services with Python and Node.js, designing high-efficiency SQL database schemas, and turning raw operational logs into dashboards and reports used for business decisions.",
     p2: "My background combines formal in-house experience at **PT Glints Indonesia Group** (Software Engineer Trainee) and **PT Indofun Digital Technology** (Business Support & Analytics), alongside serving as Instructor and Assessor at **Asosiasi AI Indonesia**. In addition, since February 2023 I run independent consulting: technical project management, crafting **custom executive pitch decks**, and delivering corporate technical workshops for premier institutions including Bank Indonesia.",
     p3: "Currently open to **full-time software and data roles** (Software Engineer, Data Analyst, or related technical roles), **project management & delivery collaborations**, and **enterprise corporate training**.",
   },
   capability: {
     sectionTag: "CORE CAPABILITIES",
     headline: "Technical Disciplines & Core Stack",
-    sub: "Bridging software engineering, machine learning pipelines, and operational data intelligence.",
+    sub: "Software engineering, machine learning pipelines, and data analytics for operations.",
     items: {
       build: {
         tag: "01 / BUILD",
         title: "Build",
         subtitle: "Software · Systems · APIs",
-        desc: "Software development, backend fundamentals, system and data workflows, database design, and robust API integrations.",
+        desc: "Software development, backend fundamentals, system and data workflows, database design, and reliable API integrations.",
         skills: ["Python", "Node.js", "Express", "TypeScript", "REST APIs", "Git"],
       },
       analyze: {
@@ -188,7 +188,7 @@ export const en = {
     tagline: "Software & Data Specialist • 5+ Years Experience • Open to IT Roles & Consulting",
     rights: "All rights reserved.",
     backToTop: "Back to top",
-    builtWith: "Modern editorial profile built with Next.js & Tailwind CSS.",
+    builtWith: "Built with Next.js & Tailwind CSS.",
   },
 };
 

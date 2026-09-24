@@ -42,6 +42,25 @@ export const CvTabs: React.FC<CvTabsProps> = ({ activeTab, onTabChange }) => {
     },
   ];
 
+  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+    let nextIndex = index;
+    if (e.key === "ArrowRight") {
+      nextIndex = (index + 1) % tabs.length;
+    } else if (e.key === "ArrowLeft") {
+      nextIndex = (index - 1 + tabs.length) % tabs.length;
+    } else if (e.key === "Home") {
+      nextIndex = 0;
+    } else if (e.key === "End") {
+      nextIndex = tabs.length - 1;
+    } else {
+      return;
+    }
+    e.preventDefault();
+    onTabChange(tabs[nextIndex].id);
+    const nextTabEl = document.getElementById(`tab-${tabs[nextIndex].id}`);
+    nextTabEl?.focus();
+  };
+
   return (
     <div className="sticky top-16 z-30 w-full bg-editorial-light-bg/95 dark:bg-editorial-dark-bg/95 backdrop-blur-md border-b border-editorial-light-border dark:border-editorial-dark-border py-2.5">
       <div
@@ -49,7 +68,7 @@ export const CvTabs: React.FC<CvTabsProps> = ({ activeTab, onTabChange }) => {
         aria-label="Online CV Sections"
         className="flex items-center space-x-1.5 overflow-x-auto no-scrollbar scroll-smooth"
       >
-        {tabs.map((tab) => {
+        {tabs.map((tab, idx) => {
           const isActive = activeTab === tab.id;
           return (
             <button
@@ -59,6 +78,7 @@ export const CvTabs: React.FC<CvTabsProps> = ({ activeTab, onTabChange }) => {
               aria-controls={`panel-${tab.id}`}
               id={`tab-${tab.id}`}
               onClick={() => onTabChange(tab.id)}
+              onKeyDown={(e) => handleKeyDown(e, idx)}
               type="button"
               className={`inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-editorial-light-accent ${
                 isActive

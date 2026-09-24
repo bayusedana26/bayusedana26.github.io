@@ -20,8 +20,8 @@ export const projects: Project[] = [
     image: "/assets/projects/dashboard_jakarta.png",
     link: "https://dashboardmonitoringjakpus.vercel.app/",
     linkText: {
-      en: "Open Live App ↗",
-      id: "Buka Live App ↗",
+      en: "Open Live App",
+      id: "Buka Live App",
     },
     ndaNote: {
       en: "Live Deployment",
@@ -48,8 +48,8 @@ export const projects: Project[] = [
     image: "/assets/projects/colab_sentiment.png",
     link: "https://colab.research.google.com/drive/19OVfn0j1Zb-0D3srIEepJ361DYYeKwPV?usp=sharing",
     linkText: {
-      en: "Open Notebook ↗",
-      id: "Buka Notebook ↗",
+      en: "Open Notebook",
+      id: "Buka Notebook",
     },
     ndaNote: {
       en: "Open Source",
@@ -76,8 +76,8 @@ export const projects: Project[] = [
     image: "/assets/projects/colab_detect_count.png",
     link: "https://colab.research.google.com/drive/1qkRe7A5Ynan5lPLkMLgnSGdjZc4CK8af?usp=sharing",
     linkText: {
-      en: "Open Notebook ↗",
-      id: "Buka Notebook ↗",
+      en: "Open Notebook",
+      id: "Buka Notebook",
     },
     ndaNote: {
       en: "Open Source",
@@ -104,8 +104,8 @@ export const projects: Project[] = [
     image: "/assets/projects/colab_aerial.png",
     link: "https://colab.research.google.com/drive/1rGHdYzLWBv5hLjORNRLSRToiVvwHb9gM?usp=sharing",
     linkText: {
-      en: "Open Notebook ↗",
-      id: "Buka Notebook ↗",
+      en: "Open Notebook",
+      id: "Buka Notebook",
     },
     ndaNote: {
       en: "Open Source",
@@ -132,8 +132,8 @@ export const projects: Project[] = [
     image: "/assets/projects/tableau_vizzes.png",
     link: "https://public.tableau.com/app/profile/bayusedana/vizzes",
     linkText: {
-      en: "Open Tableau Public ↗",
-      id: "Buka Tableau ↗",
+      en: "Open Tableau Public",
+      id: "Buka Tableau",
     },
     ndaNote: {
       en: "Public Dashboards",
@@ -160,8 +160,8 @@ export const projects: Project[] = [
     image: "/assets/projects/house_of_pendowo.png",
     link: "https://sites.google.com/view/houseofpendowo/home?authuser=0",
     linkText: {
-      en: "Open Website ↗",
-      id: "Buka Website ↗",
+      en: "Open Website",
+      id: "Buka Website",
     },
     ndaNote: {
       en: "Live Website",
@@ -191,8 +191,8 @@ export const projects: Project[] = [
       id: "Confidential (Halaman 1)",
     },
     linkText: {
-      en: "View Cover ↗",
-      id: "Lihat Cover ↗",
+      en: "View Cover",
+      id: "Lihat Cover",
     },
     tags: ["Fintech", "ShopeePay", "Partnership Deck", "Gaming"],
   },
@@ -218,8 +218,8 @@ export const projects: Project[] = [
       id: "Confidential (Halaman 1)",
     },
     linkText: {
-      en: "View Cover ↗",
-      id: "Lihat Cover ↗",
+      en: "View Cover",
+      id: "Lihat Cover",
     },
     tags: ["Google Play", "Fintech Promo", "ShopeePay", "Payment Systems"],
   },
@@ -242,8 +242,8 @@ export const projects: Project[] = [
     image: "/assets/projects/indofun_guides.png",
     link: "https://idle.indofungames.com/guides",
     linkText: {
-      en: "Open Guide Portal ↗",
-      id: "Buka Panduan ↗",
+      en: "Open Guide Portal",
+      id: "Buka Panduan",
     },
     ndaNote: {
       en: "Public Guide Portal",
@@ -270,8 +270,8 @@ export const projects: Project[] = [
     image: "/assets/projects/ashaedu_workshop.png",
     link: "https://www.ashaedu.id/programs/workshop-ai-gratis-membuat-konten-kreatif-dengan-ai-untuk-guru-abad-21-7922",
     linkText: {
-      en: "View Program ↗",
-      id: "Buka Program ↗",
+      en: "View Program",
+      id: "Buka Program",
     },
     ndaNote: {
       en: "Speaker: Bayu Sedana",

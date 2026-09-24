@@ -86,8 +86,8 @@ export const CapabilitiesTab: React.FC = () => {
         </h2>
         <p className="text-xs sm:text-sm text-editorial-light-muted dark:text-editorial-dark-muted">
           {language === "id"
-            ? "Fondasi rekayasa backend, analitika data terapan, dan pengalaman advisory lintas institusi."
-            : "Core backend engineering foundations, applied data analytics, and cross-institutional advisory."}
+            ? "Backend engineering, data analytics terapan, dan pengalaman advisory lintas institusi."
+            : "Backend engineering, applied data analytics, and advisory across institutions."}
         </p>
       </div>
 
@@ -180,23 +180,28 @@ export const CapabilitiesTab: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
 
-          {/* "+ And More..." Card (Revision 5) */}
-          <div className="flex items-center space-x-3 p-3 rounded-lg border border-dashed border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-bg/50 dark:bg-editorial-dark-bg/50 hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent transition-colors">
+        {/* "+ And More...": full-width row at the bottom */}
+        <div className="flex items-center justify-between px-4 py-3 rounded-xl border border-dashed border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-bg/50 dark:bg-editorial-dark-bg/50 hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent transition-colors">
+          <div className="flex items-center space-x-3">
             <div className="w-8 h-8 rounded-lg bg-editorial-light-border/60 dark:bg-editorial-dark-border/60 flex items-center justify-center shrink-0 text-editorial-light-accent dark:text-editorial-dark-accent">
               <PlusCircle className="w-4 h-4" />
             </div>
-            <div className="min-w-0">
+            <div>
               <p className="text-xs font-bold text-editorial-light-text dark:text-editorial-dark-text">
-                {language === "id" ? "+ Dan Institusi Lainnya" : "+ And More..."}
+                {language === "id" ? "+ Dan institusi lainnya" : "+ And more institutions"}
               </p>
-              <p className="text-[10px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted truncate">
+              <p className="text-[10px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted">
                 {language === "id"
-                  ? "Kemitraan korporat & klien privat (NDA)"
-                  : "Private clients & corporate engagements (NDA)"}
+                  ? "Klien korporat & privat tidak ditampilkan karena NDA"
+                  : "Additional corporate & private clients not listed due to NDA"}
               </p>
             </div>
           </div>
+          <span className="text-[10px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted shrink-0">
+            NDA
+          </span>
         </div>
       </div>
     </div>

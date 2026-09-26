@@ -9,7 +9,7 @@ export const formalExperiences: Experience[] = [
       en: "Instructor & Assessor: Applied AI & Data Analytics",
       id: "Instructor & Asesor: Applied AI & Data Analytics",
     },
-    start: "Jul 2026",
+    start: "Jul 2024",
     end: "Present",
     current: true,
     category: "formal",

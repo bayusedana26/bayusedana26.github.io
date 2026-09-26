@@ -161,67 +161,73 @@ export const ProfileSidebar: React.FC<ProfileSidebarProps> = ({ onOpenCv }) => {
         </div>
 
         {/* ── Section: Full-Time Career ── */}
-        <div className="space-y-2 pt-3 border-t border-editorial-light-border/60 dark:border-editorial-dark-border/60">
-          <span className="text-[11px] font-mono uppercase tracking-wider text-editorial-light-accent dark:text-editorial-dark-accent font-bold">
+        <div className="space-y-1.5 pt-3 border-t border-editorial-light-border/60 dark:border-editorial-dark-border/60">
+          <span className="text-[10px] font-mono uppercase tracking-wider text-editorial-light-accent dark:text-editorial-dark-accent font-bold">
             {language === "id" ? "Karir Full-Time" : "Full-Time Career"}
           </span>
 
-          <div className="space-y-2">
-            {formalExperiences.map((exp, i) => (
-              <div key={i} className="flex items-start space-x-2.5">
-                {exp.logo ? (
-                  <InstitutionalLogo
-                    src={exp.logo}
-                    alt={exp.company}
-                    className="w-7 h-7 p-0.5 rounded-lg shrink-0 mt-0.5"
-                    size={28}
-                  />
-                ) : (
-                  <div className="w-7 h-7 rounded-lg bg-editorial-light-bg dark:bg-editorial-dark-bg border border-editorial-light-border dark:border-editorial-dark-border flex items-center justify-center shrink-0 mt-0.5" />
-                )}
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-start justify-between gap-1">
-                    <p className="text-xs font-semibold text-editorial-light-text dark:text-editorial-dark-text leading-snug">
+          <div className="space-y-1.5">
+            {formalExperiences.map((exp, i) => {
+              const startYear = exp.start.split(" ")[1];
+              const endYear = exp.current ? "Present" : exp.end.split(" ")[1];
+              const period = `${startYear}–${endYear}`;
+              return (
+                <div key={i} className="flex items-start space-x-2">
+                  {exp.logo ? (
+                    <InstitutionalLogo
+                      src={exp.logo}
+                      alt={exp.company}
+                      className="w-6 h-6 p-0.5 rounded-md shrink-0 mt-0.5"
+                      size={24}
+                    />
+                  ) : (
+                    <div className="w-6 h-6 rounded-md bg-editorial-light-bg dark:bg-editorial-dark-bg border border-editorial-light-border dark:border-editorial-dark-border shrink-0 mt-0.5" />
+                  )}
+                  <div className="min-w-0 flex-1">
+                    {/* Role title wraps freely — no date competing here */}
+                    <p className="text-[11px] font-semibold text-editorial-light-text dark:text-editorial-dark-text leading-snug">
                       {language === "id" ? exp.role.id : exp.role.en}
                     </p>
-                    <span className="text-[10px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted shrink-0 mt-px">
-                      {exp.start.split(" ")[1]}
-                      {exp.current ? "–" : `–${exp.end.split(" ")[1]}`}
-                    </span>
+                    {/* Date lives beside company (shorter text, no overflow risk) */}
+                    <div className="flex items-center justify-between gap-1 mt-0.5">
+                      <p className="text-[10px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted truncate">
+                        {exp.company}
+                      </p>
+                      <span className="text-[10px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted shrink-0">
+                        {period}
+                      </span>
+                    </div>
                   </div>
-                  <p className="text-[11px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted mt-0.5">
-                    {exp.company}
-                  </p>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
         {/* ── Section: Freelance & Consulting ── */}
-        <div className="space-y-2 pt-3 border-t border-editorial-light-border/60 dark:border-editorial-dark-border/60">
-          <span className="text-[11px] font-mono uppercase tracking-wider text-editorial-light-accent dark:text-editorial-dark-accent font-bold">
+        <div className="space-y-1.5 pt-3 border-t border-editorial-light-border/60 dark:border-editorial-dark-border/60">
+          <span className="text-[10px] font-mono uppercase tracking-wider text-editorial-light-accent dark:text-editorial-dark-accent font-bold">
             {language === "id" ? "Freelance & Konsultasi" : "Freelance & Consulting"}
           </span>
 
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             {freelanceExperiences.map((exp, i) => (
-              <div key={i} className="flex items-start space-x-2.5">
-                <div className="w-7 h-7 rounded-lg bg-editorial-light-bg dark:bg-editorial-dark-bg border border-editorial-light-border dark:border-editorial-dark-border flex items-center justify-center shrink-0 mt-0.5 text-[9px] font-mono font-bold text-editorial-light-accent dark:text-editorial-dark-accent">
+              <div key={i} className="flex items-start space-x-2">
+                <div className="w-6 h-6 rounded-md bg-editorial-light-bg dark:bg-editorial-dark-bg border border-editorial-light-border dark:border-editorial-dark-border flex items-center justify-center shrink-0 mt-0.5 text-[8px] font-mono font-bold text-editorial-light-accent dark:text-editorial-dark-accent">
                   IC
                 </div>
                 <div className="min-w-0 flex-1">
-                  <div className="flex items-start justify-between gap-1">
-                    <p className="text-xs font-semibold text-editorial-light-text dark:text-editorial-dark-text leading-snug">
-                      {language === "id" ? exp.role.id : exp.role.en}
+                  <p className="text-[11px] font-semibold text-editorial-light-text dark:text-editorial-dark-text leading-snug">
+                    {language === "id" ? exp.role.id : exp.role.en}
+                  </p>
+                  <div className="flex items-center justify-between gap-1 mt-0.5">
+                    <p className="text-[10px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted truncate">
+                      {exp.company}
                     </p>
-                    <span className="text-[10px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted shrink-0 mt-px">
+                    <span className="text-[10px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted shrink-0">
                       {exp.start.split(" ")[1]}–
                     </span>
                   </div>
-                  <p className="text-[11px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted mt-0.5">
-                    {exp.company}
-                  </p>
                 </div>
               </div>
             ))}
@@ -229,34 +235,34 @@ export const ProfileSidebar: React.FC<ProfileSidebarProps> = ({ onOpenCv }) => {
         </div>
 
         {/* ── Section: Education ── */}
-        <div className="space-y-2 pt-3 border-t border-editorial-light-border/60 dark:border-editorial-dark-border/60">
-          <span className="text-[11px] font-mono uppercase tracking-wider text-editorial-light-accent dark:text-editorial-dark-accent font-bold">
+        <div className="space-y-1.5 pt-3 border-t border-editorial-light-border/60 dark:border-editorial-dark-border/60">
+          <span className="text-[10px] font-mono uppercase tracking-wider text-editorial-light-accent dark:text-editorial-dark-accent font-bold">
             {language === "id" ? "Pendidikan" : "Education"}
           </span>
 
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             {educationList.map((item, i) => (
-              <div key={i} className="flex items-start space-x-2.5">
+              <div key={i} className="flex items-start space-x-2">
                 <InstitutionalLogo
                   src={item.logo}
                   alt={item.institution}
-                  className="w-7 h-7 p-0.5 rounded-lg shrink-0 mt-0.5"
-                  size={28}
+                  className="w-6 h-6 p-0.5 rounded-md shrink-0 mt-0.5"
+                  size={24}
                 />
                 <div className="min-w-0 flex-1">
-                  <p className="text-xs font-semibold text-editorial-light-text dark:text-editorial-dark-text leading-snug">
+                  <p className="text-[11px] font-semibold text-editorial-light-text dark:text-editorial-dark-text leading-snug">
                     {(language === "id" ? item.degree.id : item.degree.en).split("•")[0].trim()}
                   </p>
-                  <p className="text-[11px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted mt-0.5">
-                    {item.institution}
-                  </p>
-                  <p className="text-[10px] font-mono text-editorial-light-muted/70 dark:text-editorial-dark-muted/70 mt-0.5">
-                    {typeof item.period === "string"
-                      ? item.period
-                      : language === "id"
-                      ? item.period.id
-                      : item.period.en}
-                  </p>
+                  <div className="flex items-center justify-between gap-1 mt-0.5">
+                    <p className="text-[10px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted truncate">
+                      {item.institution}
+                    </p>
+                    <span className="text-[10px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted shrink-0">
+                      {typeof item.period === "string"
+                        ? item.period.split(" ").at(-1)
+                        : (language === "id" ? item.period.id : item.period.en).split(" ").at(-1)}
+                    </span>
+                  </div>
                 </div>
               </div>
             ))}

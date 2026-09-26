@@ -4,7 +4,7 @@ import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { institutionalPartners } from "@/data/experience";
 import { InstitutionalLogo, TechIcon } from "@/components/ui";
-import { Cpu, Building, PlusCircle } from "lucide-react";
+import { Cpu, Building, PlusCircle, Code2, BarChart3, GraduationCap } from "lucide-react";
 
 /* ─── Skill Groups ──────────────────────────────────────────────────────── */
 const skillGroups = [
@@ -47,34 +47,41 @@ const skillGroups = [
   },
 ];
 
-/* ─── What I Do ─────────────────────────────────────────────────────────── */
+/* ─── Domain cards config ───────────────────────────────────────────────── */
 const domains = [
   {
-    tag: "01",
-    en: "Backend & REST API Engineering",
-    id: "Backend & REST API Engineering",
-    detail: {
-      en: "Node.js · Express · FastAPI · PostgreSQL · MySQL · Auth",
-      id: "Node.js · Express · FastAPI · PostgreSQL · MySQL · Auth",
-    },
+    icon: Code2,
+    // Tailwind full class strings — no template literals so purge works
+    iconBg:     "bg-blue-500/10 dark:bg-blue-500/15",
+    iconColor:  "text-blue-500",
+    cardBorder: "border-blue-500/20 dark:border-blue-500/25",
+    cardBg:     "bg-gradient-to-br from-blue-500/5 to-transparent dark:from-blue-500/8",
+    tagBg:      "bg-blue-500/10 dark:bg-blue-500/15 text-blue-700 dark:text-blue-300",
+    title:      { en: "Backend & REST API", id: "Backend & REST API" },
+    sub:        { en: "Software Engineering", id: "Software Engineering" },
+    tags:       ["Node.js", "Express", "FastAPI", "PostgreSQL", "TypeScript"],
   },
   {
-    tag: "02",
-    en: "Applied Machine Learning & Data Analytics",
-    id: "Machine Learning Terapan & Analitik Data",
-    detail: {
-      en: "Python · Pandas · TensorFlow · OpenCV · Tableau · Colab",
-      id: "Python · Pandas · TensorFlow · OpenCV · Tableau · Colab",
-    },
+    icon: BarChart3,
+    iconBg:     "bg-violet-500/10 dark:bg-violet-500/15",
+    iconColor:  "text-violet-500",
+    cardBorder: "border-violet-500/20 dark:border-violet-500/25",
+    cardBg:     "bg-gradient-to-br from-violet-500/5 to-transparent dark:from-violet-500/8",
+    tagBg:      "bg-violet-500/10 dark:bg-violet-500/15 text-violet-700 dark:text-violet-300",
+    title:      { en: "Data & ML Engineering", id: "Data & ML Engineering" },
+    sub:        { en: "Analytics & AI Models", id: "Analitik & Model AI" },
+    tags:       ["Python", "Pandas", "TensorFlow", "OpenCV", "Tableau"],
   },
   {
-    tag: "03",
-    en: "Corporate Training & Technical Advisory",
-    id: "Pelatihan Korporat & Konsultasi Teknis",
-    detail: {
-      en: "In-house workshops · BNSP coaching · Curriculum design · 200+ mentees",
-      id: "Workshop in-house · BNSP coaching · Desain kurikulum · 200+ mentee",
-    },
+    icon: GraduationCap,
+    iconBg:     "bg-emerald-500/10 dark:bg-emerald-500/15",
+    iconColor:  "text-emerald-500",
+    cardBorder: "border-emerald-500/20 dark:border-emerald-500/25",
+    cardBg:     "bg-gradient-to-br from-emerald-500/5 to-transparent dark:from-emerald-500/8",
+    tagBg:      "bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-300",
+    title:      { en: "Corporate Training", id: "Pelatihan Korporat" },
+    sub:        { en: "Advisory & Curriculum Design", id: "Advisory & Desain Kurikulum" },
+    tags:       ["In-house", "BNSP", "Curriculum", "200+ mentees"],
   },
 ];
 
@@ -105,30 +112,54 @@ export const CapabilitiesTab: React.FC = () => {
         </p>
       </div>
 
-      {/* What I Do — compact domain list */}
-      <div className="space-y-2">
+      {/* What I Do — rich domain cards */}
+      <div className="space-y-3">
         <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-editorial-light-muted dark:text-editorial-dark-muted">
           {language === "id" ? "Apa yang saya kerjakan" : "What I do"}
         </h3>
-        <div className="space-y-1.5">
-          {domains.map((d) => (
-            <div
-              key={d.tag}
-              className="flex items-start space-x-3 px-4 py-3 rounded-xl border border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface"
-            >
-              <span className="text-[10px] font-mono font-bold text-editorial-light-accent dark:text-editorial-dark-accent shrink-0 mt-px">
-                {d.tag}
-              </span>
-              <div className="min-w-0 space-y-0.5">
-                <p className="text-xs font-bold text-editorial-light-text dark:text-editorial-dark-text leading-snug">
-                  {language === "id" ? d.id : d.en}
-                </p>
-                <p className="text-[11px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted leading-relaxed">
-                  {d.detail[language]}
-                </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          {domains.map((d, i) => {
+            const Icon = d.icon;
+            return (
+              <div
+                key={i}
+                className={`rounded-xl border p-4 space-y-3 ${d.cardBorder} ${d.cardBg}`}
+              >
+                {/* Icon + number */}
+                <div className="flex items-center justify-between">
+                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${d.iconBg}`}>
+                    <Icon className={`w-5 h-5 ${d.iconColor}`} />
+                  </div>
+                  <span className={`text-[10px] font-mono font-bold ${d.iconColor} opacity-60`}>
+                    0{i + 1}
+                  </span>
+                </div>
+
+                {/* Title + sub */}
+                <div className="space-y-0.5">
+                  <p className="text-sm font-bold text-editorial-light-text dark:text-editorial-dark-text leading-snug">
+                    {d.title[language]}
+                  </p>
+                  <p className={`text-xs font-medium ${d.iconColor}`}>
+                    {d.sub[language]}
+                  </p>
+                </div>
+
+                {/* Tech tags */}
+                <div className="flex flex-wrap gap-1.5">
+                  {d.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className={`inline-block px-2 py-0.5 rounded-md text-[10px] font-mono font-semibold ${d.tagBg}`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

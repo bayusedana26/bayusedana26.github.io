@@ -66,8 +66,8 @@ export default function HomePage() {
       */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:h-[calc(100vh-4rem)] lg:overflow-hidden items-start">
 
-        {/* Left Column: Anchored profile sidebar — scrolls internally on desktop, normal flow on mobile */}
-        <div className="lg:col-span-4 xl:col-span-4 lg:h-full lg:overflow-y-auto custom-scrollbar py-6 sm:py-8 lg:py-6">
+        {/* Left Column: Anchored sidebar — fixed, non-scrollable on desktop */}
+        <div className="lg:col-span-4 xl:col-span-4 lg:h-full lg:overflow-y-hidden py-6 sm:py-8 lg:py-6">
           <ProfileSidebar onOpenCv={() => setIsCvOpen(true)} />
         </div>
 

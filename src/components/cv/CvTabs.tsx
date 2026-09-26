@@ -17,18 +17,13 @@ export const CvTabs: React.FC<CvTabsProps> = ({ activeTab, onTabChange }) => {
   const tabs: { id: CvTabId; label: { en: string; id: string }; icon: React.ReactNode }[] = [
     {
       id: "experience",
-      label: { en: "Experience", id: "Pengalaman" },
+      label: { en: "Experience & Skills", id: "Pengalaman & Keahlian" },
       icon: <Briefcase className="w-3.5 h-3.5" />,
     },
     {
       id: "projects",
       label: { en: "Projects", id: "Proyek" },
       icon: <FolderGit2 className="w-3.5 h-3.5" />,
-    },
-    {
-      id: "capabilities",
-      label: { en: "Skills", id: "Keahlian" },
-      icon: <Cpu className="w-3.5 h-3.5" />,
     },
     {
       id: "credentials",
@@ -82,7 +77,9 @@ export const CvTabs: React.FC<CvTabsProps> = ({ activeTab, onTabChange }) => {
           className="flex items-center space-x-2 overflow-x-auto no-scrollbar scroll-smooth py-0.5"
         >
           {tabs.map((tab, idx) => {
-            const isActive = activeTab === tab.id;
+            const isActive =
+              activeTab === tab.id ||
+              (tab.id === "experience" && (activeTab as string) === "capabilities");
             return (
               <button
                 key={tab.id}

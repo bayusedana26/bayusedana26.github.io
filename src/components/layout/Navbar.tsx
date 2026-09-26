@@ -25,9 +25,11 @@ export const Navbar: React.FC = () => {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { href: "#experience", label: t.nav.experience },
+    {
+      href: "#experience",
+      label: language === "id" ? "Pengalaman & Keahlian" : "Experience & Skills",
+    },
     { href: "#projects", label: t.nav.projects },
-    { href: "#capabilities", label: language === "id" ? "Keahlian" : "Capabilities" },
     { href: "#credentials", label: t.nav.certifications },
     { href: "#beyond", label: language === "id" ? "Dokumentasi" : "Beyond Work" },
   ];

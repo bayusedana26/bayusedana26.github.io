@@ -25,13 +25,16 @@ export default function HomePage() {
       if (
         hash === "experience" ||
         hash === "projects" ||
-        hash === "capabilities" ||
         hash === "credentials" ||
         hash === "beyond"
       ) {
         setActiveTab(hash as CvTabId);
-      } else if (hash === "about") {
-        setActiveTab("capabilities");
+      } else if (
+        hash === "skills" ||
+        hash === "capabilities" ||
+        hash === "about"
+      ) {
+        setActiveTab("experience");
       } else if (hash === "certifications") {
         setActiveTab("credentials");
       } else if (hash === "gallery") {
@@ -74,9 +77,10 @@ export default function HomePage() {
 
         {/* Content Canvas: Centered max-w for readability on ultra-wide screens */}
         <div className="w-full max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-10 xl:px-12 py-6 sm:py-8 flex-1">
-          {activeTab === "experience" && <ExperienceTab />}
+          {(activeTab === "experience" || (activeTab as string) === "capabilities") && (
+            <ExperienceTab />
+          )}
           {activeTab === "projects" && <ProjectsTab />}
-          {activeTab === "capabilities" && <CapabilitiesTab />}
           {activeTab === "credentials" && <CredentialsTab />}
           {activeTab === "beyond" && <BeyondWorkTab />}
         </div>

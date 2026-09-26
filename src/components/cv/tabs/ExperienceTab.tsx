@@ -18,6 +18,7 @@ import {
   Briefcase,
   Layers,
   Cpu,
+  PlusCircle,
 } from "lucide-react";
 
 /* ─── Domain Focus Config ────────────────────────────────────────────────── */
@@ -432,6 +433,32 @@ export const ExperienceTab: React.FC = () => {
               </div>
             </div>
           ))}
+
+          {/* NDA footnote card */}
+          <div className="flex items-start space-x-3 p-3.5 rounded-xl border border-dashed border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface/40 dark:bg-editorial-dark-surface/40">
+            <div className="w-8 h-8 rounded-lg bg-editorial-light-border/40 dark:bg-editorial-dark-border/40 flex items-center justify-center shrink-0 text-editorial-light-accent dark:text-editorial-dark-accent">
+              <PlusCircle className="w-4 h-4" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-xs font-bold text-editorial-light-text dark:text-editorial-dark-text leading-snug">
+                {language === "id" ? "+ Institusi Lainnya" : "+ More Clients & Partners"}
+              </p>
+              <p className="text-[11px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted mt-0.5">
+                {language === "id" ? "Terikat NDA / Kerahasiaan" : "Protected under NDA"}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Subtle 'and more' divider line */}
+        <div className="flex items-center gap-3 pt-3">
+          <div className="h-px bg-editorial-light-border/60 dark:border-editorial-dark-border/60 flex-1" />
+          <span className="text-[11px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted shrink-0">
+            {language === "id"
+              ? "— dan berbagai institusi perbankan, BUMN & kampus lainnya (terikat NDA)"
+              : "— and more institutional clients across enterprise, banking & higher education"}
+          </span>
+          <div className="h-px bg-editorial-light-border/60 dark:border-editorial-dark-border/60 flex-1" />
         </div>
       </div>
     </div>

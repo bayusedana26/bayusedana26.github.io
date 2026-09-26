@@ -27,7 +27,7 @@ export const CvTabs: React.FC<CvTabsProps> = ({ activeTab, onTabChange }) => {
     },
     {
       id: "capabilities",
-      label: { en: "Capabilities", id: "Keahlian" },
+      label: { en: "Skills", id: "Keahlian" },
       icon: <Cpu className="w-3.5 h-3.5" />,
     },
     {

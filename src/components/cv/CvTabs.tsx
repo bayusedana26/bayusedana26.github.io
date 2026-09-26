@@ -62,37 +62,52 @@ export const CvTabs: React.FC<CvTabsProps> = ({ activeTab, onTabChange }) => {
   };
 
   return (
-    <div className="sticky top-16 z-30 w-full bg-editorial-light-bg/95 dark:bg-editorial-dark-bg/95 backdrop-blur-md border-b border-editorial-light-border dark:border-editorial-dark-border py-2.5">
-      <div
-        role="tablist"
-        aria-label="Online CV Sections"
-        className="flex items-center space-x-1.5 overflow-x-auto no-scrollbar scroll-smooth"
-      >
-        {tabs.map((tab, idx) => {
-          const isActive = activeTab === tab.id;
-          return (
-            <button
-              key={tab.id}
-              role="tab"
-              aria-selected={isActive}
-              aria-controls={`panel-${tab.id}`}
-              id={`tab-${tab.id}`}
-              onClick={() => onTabChange(tab.id)}
-              onKeyDown={(e) => handleKeyDown(e, idx)}
-              type="button"
-              className={`inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-editorial-light-accent ${
-                isActive
-                  ? "bg-editorial-light-text text-editorial-light-bg dark:bg-editorial-dark-text dark:text-editorial-dark-bg shadow-2xs font-semibold"
-                  : "border border-editorial-light-border/80 dark:border-editorial-dark-border/80 bg-editorial-light-surface/60 dark:bg-editorial-dark-surface/60 text-editorial-light-muted dark:text-editorial-dark-muted hover:text-editorial-light-text dark:hover:text-editorial-dark-text hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent"
-              }`}
-            >
-              <span className={isActive ? "text-editorial-light-accent dark:text-blue-400" : ""}>
-                {tab.icon}
-              </span>
-              <span>{tab.label[language]}</span>
-            </button>
-          );
-        })}
+    /*
+      Fix #1 / #10: Sticky is now top-0, relative to the right scroll column container.
+      On desktop this is correct because CvTabs sits inside the right overflow-y-auto column.
+      On mobile (body scroll), top-0 sticks to window top — acceptable UX since the navbar
+      is also sticky and the tabs will appear just below it on scroll.
+    */
+    <div className="sticky top-0 z-30 w-full bg-editorial-light-bg/95 dark:bg-editorial-dark-bg/95 backdrop-blur-md border-b border-editorial-light-border dark:border-editorial-dark-border py-2.5">
+      {/* Fix #12: Wrap in relative container to add right-edge gradient fade on mobile */}
+      <div className="relative">
+        {/* Gradient fade — only visible on mobile to signal horizontal scroll affordance */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-[#F7F7F5] dark:from-[#111111] to-transparent z-10 lg:hidden"
+        />
+
+        <div
+          role="tablist"
+          aria-label="Online CV Sections"
+          className="flex items-center space-x-1.5 overflow-x-auto no-scrollbar scroll-smooth"
+        >
+          {tabs.map((tab, idx) => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                role="tab"
+                aria-selected={isActive}
+                aria-controls={`panel-${tab.id}`}
+                id={`tab-${tab.id}`}
+                onClick={() => onTabChange(tab.id)}
+                onKeyDown={(e) => handleKeyDown(e, idx)}
+                type="button"
+                className={`inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-editorial-light-accent ${
+                  isActive
+                    ? "bg-editorial-light-text text-editorial-light-bg dark:bg-editorial-dark-text dark:text-editorial-dark-bg shadow-2xs font-semibold"
+                    : "border border-editorial-light-border/80 dark:border-editorial-dark-border/80 bg-editorial-light-surface/60 dark:bg-editorial-dark-surface/60 text-editorial-light-muted dark:text-editorial-dark-muted hover:text-editorial-light-text dark:hover:text-editorial-dark-text hover:border-editorial-light-accent dark:hover:border-editorial-dark-accent"
+                }`}
+              >
+                <span className={isActive ? "text-editorial-light-accent dark:text-blue-400" : ""}>
+                  {tab.icon}
+                </span>
+                <span>{tab.label[language]}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

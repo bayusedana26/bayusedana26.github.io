@@ -46,26 +46,47 @@ export default function HomePage() {
   const handleTabChange = (tabId: CvTabId) => {
     setActiveTab(tabId);
     window.history.replaceState(null, "", `#${tabId}`);
+
+    // Fix #3: On mobile, auto-scroll to the content area so the user can see the tab panel
+    if (window.innerWidth < 1024) {
+      const contentEl = document.getElementById("cv-content-area");
+      if (contentEl) {
+        contentEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
   };
 
   return (
-    <main className="editorial-container py-6 sm:py-8 lg:py-10">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Sticky Executive Profile Sidebar (4 cols on desktop, naturally fits viewport, zero inner scrollbar) */}
-        <div className="lg:col-span-4 xl:col-span-4 lg:sticky lg:top-20 h-fit self-start">
+    <main className="editorial-container">
+      {/*
+        Fix #1: Split-pane layout on desktop.
+        On lg+: grid is viewport-height (100vh minus 64px navbar) with overflow-hidden.
+        Each column fills the full height and scrolls independently via overflow-y-auto.
+        On mobile (below lg): normal stacked document flow — no fixed heights.
+      */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:h-[calc(100vh-4rem)] lg:overflow-hidden items-start">
+
+        {/* Left Column: Anchored profile sidebar — scrolls internally on desktop, normal flow on mobile */}
+        <div className="lg:col-span-4 xl:col-span-4 lg:h-full lg:overflow-y-auto custom-scrollbar py-6 sm:py-8 lg:py-6">
           <ProfileSidebar onOpenCv={() => setIsCvOpen(true)} />
         </div>
 
-        {/* Right Column: Dynamic Segmented Online CV Canvas (8 cols on desktop, spacious & readable) */}
-        <div className="lg:col-span-8 xl:col-span-8 min-w-0 space-y-6">
-          <CvTabs activeTab={activeTab} onTabChange={handleTabChange} />
+        {/* Right Column: Dynamic CV canvas — scrolls independently on desktop */}
+        <div
+          id="cv-content-area"
+          className="lg:col-span-8 xl:col-span-8 min-w-0 lg:h-full lg:overflow-y-auto custom-scrollbar"
+        >
+          <div className="py-6 sm:py-8 lg:py-6 space-y-6">
+            {/* CvTabs is sticky top-0 within this scroll container on desktop */}
+            <CvTabs activeTab={activeTab} onTabChange={handleTabChange} />
 
-          <div className="pt-2">
-            {activeTab === "experience" && <ExperienceTab />}
-            {activeTab === "projects" && <ProjectsTab />}
-            {activeTab === "capabilities" && <CapabilitiesTab />}
-            {activeTab === "credentials" && <CredentialsTab />}
-            {activeTab === "beyond" && <BeyondWorkTab />}
+            <div className="pt-2 pb-8">
+              {activeTab === "experience" && <ExperienceTab />}
+              {activeTab === "projects" && <ProjectsTab />}
+              {activeTab === "capabilities" && <CapabilitiesTab />}
+              {activeTab === "credentials" && <CredentialsTab />}
+              {activeTab === "beyond" && <BeyondWorkTab />}
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { certifications } from "@/data/certifications";
@@ -10,6 +10,22 @@ import { Award, ExternalLink, X, ShieldCheck } from "lucide-react";
 export const CredentialsTab: React.FC = () => {
   const { language } = useLanguage();
   const [selectedCert, setSelectedCert] = useState<(typeof certifications)[0] | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (selectedCert) {
+      // Fix #7: Lock body scroll when modal is open
+      document.body.style.overflow = "hidden";
+      // Fix #8: Move focus into the modal on open
+      closeButtonRef.current?.focus();
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [selectedCert]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -22,6 +38,26 @@ export const CredentialsTab: React.FC = () => {
     }
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedCert]);
+
+  // Fix #8: Focus trap — keep keyboard focus within the modal while it is open
+  const handleModalKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key !== "Tab" || !modalRef.current) return;
+    const focusable = Array.from(
+      modalRef.current.querySelectorAll<HTMLElement>(
+        'button, [href], input, [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter((el) => !el.hasAttribute("disabled"));
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      last.focus();
+      e.preventDefault();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      first.focus();
+      e.preventDefault();
+    }
+  };
 
   return (
     <div
@@ -184,8 +220,10 @@ export const CredentialsTab: React.FC = () => {
           aria-label={selectedCert.title}
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs animate-fadeIn"
           onClick={() => setSelectedCert(null)}
+          onKeyDown={handleModalKeyDown}
         >
           <div
+            ref={modalRef}
             className="relative w-full max-w-2xl max-h-[85vh] flex flex-col rounded-xl border border-neutral-800 bg-neutral-900 text-white overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
@@ -194,9 +232,10 @@ export const CredentialsTab: React.FC = () => {
                 {selectedCert.title}
               </span>
               <button
+                ref={closeButtonRef}
                 type="button"
                 onClick={() => setSelectedCert(null)}
-                className="p-1 rounded text-neutral-400 hover:text-white"
+                className="p-1 rounded text-neutral-400 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />

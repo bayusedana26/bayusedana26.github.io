@@ -4,22 +4,40 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { projects } from "@/data/projects";
-import { FolderGit2, ExternalLink, ShieldAlert } from "lucide-react";
+import { FolderGit2, ExternalLink, ShieldAlert, ImageIcon, X } from "lucide-react";
 
 export const ProjectsTab: React.FC = () => {
   const { language } = useLanguage();
   const [filter, setFilter] = useState<string>("all");
 
-  // Removed Pitch Decks per user request
+  // Fix #6: Track which project image is being previewed (for NDA "View Cover" projects)
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+  const [lightboxAlt, setLightboxAlt] = useState<string>("");
+
+  const openLightbox = (src: string, alt: string) => {
+    setLightboxSrc(src);
+    setLightboxAlt(alt);
+    // Fix #7: lock body scroll when lightbox opens
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeLightbox = () => {
+    setLightboxSrc(null);
+    document.body.style.overflow = "";
+  };
+
+  // Fix #5: Add indofun and workshop filter chips (were missing from the UI)
   const categories = [
     { id: "all", label: { en: "All Public Work", id: "Semua Proyek Publik" } },
     { id: "apps", label: { en: "Web Apps", id: "Aplikasi Web" } },
     { id: "colab", label: { en: "ML & Colab", id: "Machine Learning" } },
     { id: "tableau", label: { en: "Tableau & BI", id: "Tableau & BI" } },
+    { id: "indofun", label: { en: "Indofun Games", id: "Indofun Games" } },
+    { id: "workshop", label: { en: "AI Workshop", id: "AI Workshop" } },
   ];
 
-  // Exclude deck category completely
-  const publicProjects = projects.filter((p) => p.category !== ("decks" as any));
+  // Exclude pitch decks (not public)
+  const publicProjects = projects.filter((p) => p.category !== ("decks" as unknown));
 
   const filteredProjects =
     filter === "all" ? publicProjects : publicProjects.filter((p) => p.category === filter);
@@ -152,9 +170,10 @@ export const ProjectsTab: React.FC = () => {
                     </div>
                   )}
 
-                  {/* Direct Action Link */}
+                  {/* Direct Action Link / NDA Cover Preview */}
                   <div className="pt-2 border-t border-editorial-light-border/60 dark:border-editorial-dark-border/60 flex items-center justify-between">
                     {project.link && project.linkText ? (
+                      /* Has a real external link — render as anchor */
                       <a
                         href={project.link}
                         target="_blank"
@@ -164,8 +183,21 @@ export const ProjectsTab: React.FC = () => {
                         <span>{project.linkText[language]}</span>
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
+                    ) : project.linkText && project.image ? (
+                      /*
+                        Fix #6: NDA projects with a linkText but no external link.
+                        Instead of rendering a dead/broken link, open the project image as a lightbox.
+                      */
+                      <button
+                        type="button"
+                        onClick={() => openLightbox(project.image!, project.title)}
+                        className="inline-flex items-center space-x-1.5 text-xs font-mono font-semibold text-editorial-light-muted dark:text-editorial-dark-muted hover:text-editorial-light-accent dark:hover:text-editorial-dark-accent transition-colors"
+                      >
+                        <ImageIcon className="w-3.5 h-3.5" />
+                        <span>{project.linkText[language]}</span>
+                      </button>
                     ) : (
-                      <span></span>
+                      <span />
                     )}
 
                     <span className="text-[10px] font-mono text-editorial-light-muted dark:text-editorial-dark-muted">
@@ -176,6 +208,41 @@ export const ProjectsTab: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/*
+        Fix #6 + Fix #7: Image lightbox modal for NDA project cover previews.
+        Body scroll is locked when open, restored on close.
+      */}
+      {lightboxSrc && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightboxAlt}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+          onClick={closeLightbox}
+        >
+          <div
+            className="relative max-w-3xl w-full rounded-2xl overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={lightboxSrc}
+              alt={lightboxAlt}
+              width={1200}
+              height={800}
+              className="w-full h-auto object-contain"
+            />
+            <button
+              type="button"
+              onClick={closeLightbox}
+              aria-label={language === "id" ? "Tutup pratinjau" : "Close preview"}
+              className="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       )}
     </div>

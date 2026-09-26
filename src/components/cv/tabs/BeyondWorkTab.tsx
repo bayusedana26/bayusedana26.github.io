@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { featuredBIPhotos, otherGallerySessions } from "@/data/gallery";
@@ -18,6 +18,19 @@ export const BeyondWorkTab: React.FC = () => {
   const { language } = useLanguage();
   const [selectedPhoto, setSelectedPhoto] = useState<LightboxPhoto | null>(null);
   const [activeSessionFilter, setActiveSessionFilter] = useState<string>("all");
+  const modalRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Fix #7: Lock body scroll when lightbox is open
+  useEffect(() => {
+    if (selectedPhoto) {
+      document.body.style.overflow = "hidden";
+      closeButtonRef.current?.focus();
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [selectedPhoto]);
 
   // Close lightbox on Escape
   useEffect(() => {
@@ -27,6 +40,26 @@ export const BeyondWorkTab: React.FC = () => {
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, []);
+
+  // Fix #8: Focus trap for lightbox modal
+  const handleModalKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key !== "Tab" || !modalRef.current) return;
+    const focusable = Array.from(
+      modalRef.current.querySelectorAll<HTMLElement>(
+        'button, [href], input, [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter((el) => !el.hasAttribute("disabled"));
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      last.focus();
+      e.preventDefault();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      first.focus();
+      e.preventDefault();
+    }
+  };
 
   const filterCategories = [
     { id: "all", label: { en: "All Engagements", id: "Semua Sesi" } },
@@ -274,8 +307,10 @@ export const BeyondWorkTab: React.FC = () => {
           aria-label={selectedPhoto.title}
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-xs animate-fadeIn"
           onClick={() => setSelectedPhoto(null)}
+          onKeyDown={handleModalKeyDown}
         >
           <div
+            ref={modalRef}
             className="relative w-full max-w-3xl max-h-[90vh] flex flex-col rounded-xl border border-neutral-800 bg-neutral-900 text-white overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
@@ -284,6 +319,7 @@ export const BeyondWorkTab: React.FC = () => {
                 {selectedPhoto.title} · {selectedPhoto.org}
               </span>
               <button
+                ref={closeButtonRef}
                 type="button"
                 onClick={() => setSelectedPhoto(null)}
                 className="p-1 rounded text-neutral-400 hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white"

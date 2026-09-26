@@ -68,19 +68,18 @@ export const CvTabs: React.FC<CvTabsProps> = ({ activeTab, onTabChange }) => {
       On mobile (body scroll), top-0 sticks to window top — acceptable UX since the navbar
       is also sticky and the tabs will appear just below it on scroll.
     */
-    <div className="sticky top-0 z-30 w-full bg-editorial-light-bg/95 dark:bg-editorial-dark-bg/95 backdrop-blur-md border-b border-editorial-light-border dark:border-editorial-dark-border py-2.5">
-      {/* Fix #12: Wrap in relative container to add right-edge gradient fade on mobile */}
-      <div className="relative">
+    <div className="sticky top-0 z-30 w-full bg-editorial-light-bg/95 dark:bg-editorial-dark-bg/95 backdrop-blur-md border-b border-editorial-light-border dark:border-editorial-dark-border py-2.5 sm:py-3 transition-colors duration-200">
+      <div className="w-full max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-10 xl:px-12 relative">
         {/* Gradient fade — only visible on mobile to signal horizontal scroll affordance */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute right-0 top-0 bottom-0 w-10 bg-gradient-to-l from-[#F7F7F5] dark:from-[#111111] to-transparent z-10 lg:hidden"
+          className="pointer-events-none absolute right-4 sm:right-8 top-0 bottom-0 w-10 bg-gradient-to-l from-editorial-light-bg dark:from-editorial-dark-bg to-transparent z-10 md:hidden"
         />
 
         <div
           role="tablist"
           aria-label="Online CV Sections"
-          className="flex items-center space-x-1.5 overflow-x-auto no-scrollbar scroll-smooth"
+          className="flex items-center space-x-2 overflow-x-auto no-scrollbar scroll-smooth py-0.5"
         >
           {tabs.map((tab, idx) => {
             const isActive = activeTab === tab.id;

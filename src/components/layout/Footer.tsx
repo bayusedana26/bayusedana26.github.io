@@ -16,8 +16,8 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="w-full border-t border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface dark:bg-editorial-dark-surface transition-colors duration-200">
-      <div className="editorial-container py-12 md:py-16">
+    <footer className="w-full border-t border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-surface/60 dark:bg-editorial-dark-surface/60 transition-colors duration-200 mt-auto">
+      <div className="w-full max-w-[1320px] mx-auto px-4 sm:px-8 lg:px-10 xl:px-12 py-10 md:py-14">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           {/* Brand Column */}
           <div className="md:col-span-6 space-y-3">

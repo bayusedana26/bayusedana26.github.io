@@ -39,7 +39,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-editorial-light-border dark:border-editorial-dark-border bg-editorial-light-bg/95 dark:bg-editorial-dark-bg/95 backdrop-blur supports-[backdrop-filter]:bg-editorial-light-bg/80 dark:supports-[backdrop-filter]:bg-editorial-dark-bg/80 transition-colors duration-200">
-      <div className="editorial-container flex h-16 items-center justify-between">
+      <div className="w-full px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
         {/* Brand */}
         <Link
           href="/"

@@ -4,7 +4,6 @@ import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -97,8 +96,7 @@ export default function RootLayout({
         <ThemeProvider>
           <LanguageProvider>
             <Navbar />
-            <div className="flex-1">{children}</div>
-            <Footer />
+            <div className="flex-1 flex flex-col min-h-0 w-full">{children}</div>
           </LanguageProvider>
         </ThemeProvider>
       </body>
